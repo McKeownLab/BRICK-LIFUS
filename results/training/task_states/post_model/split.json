@@ -5,22 +5,22 @@
     "fuspd04",
     "fuspd06",
     "fuspd07",
+    "fuspd08",
     "fuspd09",
     "fuspd11",
+    "fuspd12",
     "fuspd13",
     "fuspd15",
     "fuspd16",
     "fuspd18",
     "fuspd19",
-    "fuspd20",
     "fuspd22",
-    "fuspd23",
     "fuspd24",
     "fuspd26"
   ],
   "val": [
-    "fuspd12",
-    "fuspd08"
+    "fuspd23",
+    "fuspd20"
   ],
   "condition": "post",
   "num_classes": 4,
