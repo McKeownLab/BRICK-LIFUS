@@ -398,12 +398,12 @@ def train_task_model(
 # ================================================================================
 
 def main(n_epochs: int = N_EPOCHS, cls_regression_threshold: float = 0.2):
-    random.seed(SEED)
-    np.random.seed(SEED)
-    torch.manual_seed(SEED)
+    random.seed(config.SEED)
+    np.random.seed(config.SEED)
+    torch.manual_seed(config.SEED)
 
     # Same val subjects for both models
-    val_subjects = select_val_subjects(condition="pre", seed=SEED)
+    val_subjects = select_val_subjects(condition="pre", seed=config.SEED)
     print(f"Val subjects (shared): {val_subjects}")
 
     # Pre-model: 3 classes, mpre only

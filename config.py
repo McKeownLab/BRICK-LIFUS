@@ -35,6 +35,7 @@ KL_U_FREE_BITS      = 0  # minimum KL_u before penalty kicks in
 U_PRIOR_SIGMA       = 0.5  # prior std on u_t (tighter = harder to collapse)
 
 #Training
-PATIENCE            = 100          # Epochs to wait for early stopping
 WEIGHT_DECAY        = 0.05        # Weight decay for optimizer
-BATCH_SIZE          = 12          # Batch size for training
+BATCH_SIZE          = 4          # Batch size for training
+
+SEED = 123
