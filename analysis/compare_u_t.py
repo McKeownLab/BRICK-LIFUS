@@ -73,7 +73,7 @@ USE_MODE_SPACE = True
 _SPACE_TAG = "modes" if USE_MODE_SPACE else "rois"
 _UNIT_LABEL = "mode" if USE_MODE_SPACE else "ROI"
 _DECODE_LABEL = "raw mode-space" if USE_MODE_SPACE else "ROI-decoded"
-OUT_DIR = ROOT_DIR / "results" / f"C_u_tradeoff_population_{_SPACE_TAG}"
+OUT_DIR = ROOT_DIR / "results" / "figures" / f"C_u_tradeoff_population_{_SPACE_TAG}"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 EXCLUDED_SUBJECTS = {"sub-fuspd09", "sub-fuspd15", "sub-fuspd19"}  # did not converge
