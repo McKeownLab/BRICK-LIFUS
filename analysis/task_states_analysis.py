@@ -54,6 +54,9 @@ from config import M, N_ROIS, H
 from preprocessing.load_preprocessed_data import TARGET_ROIS
 from analysis.analysis_helper_functions import load_model, compute_K
 
+# Import existing plotting function from loso_k_analysis
+from analysis.loso_k_analysis import plot_mode_index_heatmap
+
 # Reuse the descriptive functions from compare_pre_post.py unchanged.
 import analysis.compare_pre_post as cpp
 from analysis.compare_pre_post import (
@@ -75,21 +78,21 @@ COMPARISON_DIR = OUT_BASE / "K_comparison"
 
 
 # ================================================================================
-# PER-MODEL DESCRIPTIVES (local wrapper -- takes an explicit out_dir instead of
-# reading module globals, so each model writes to its own folder)
+# PER-MODEL DESCRIPTIVES
 # ================================================================================
-def run_descriptives(model, out_dir: Path, top_k: int) -> np.ndarray:
+def run_descriptives(model, out_dir: Path, top_k: int) -> tuple[np.ndarray, np.ndarray]:
     """
-    Runs the descriptive K outputs for one model into out_dir, and RETURNS
-    that model's block-coupling matrix B (N_ROIS x N_ROIS) so the caller can
-    compute the pre/post difference without recomputing.
+    Runs the descriptive K outputs for one model into out_dir.
+    Returns:
+        B: block-coupling matrix (N_ROIS x N_ROIS)
+        sorted_mode_indices: array of mode indices sorted by persistence (|Lambda| desc)
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     print(f"\n--- K descriptives -> {out_dir} ---")
 
     K, Lambda, W_bar_x = compute_K(model)
 
-    # Eigenvalue table (basis-free scalars: |lambda|, freq, tau, etc.)
+    # Eigenvalue table
     eig_df = eigenvalue_table(Lambda)
     eig_path = out_dir / "koopman_eigenvalues.csv"
     eig_df.to_csv(eig_path, index=False)
@@ -97,13 +100,13 @@ def run_descriptives(model, out_dir: Path, top_k: int) -> np.ndarray:
     print(f"  Persistent modes (|\u039b|>0.9): {(np.abs(Lambda) > 0.9).sum()} / {len(Lambda)}")
     print(f"  Spectral radius (max|\u039b|): {np.abs(Lambda).max():.4f}")
 
-    # Spectrum (explicit path arg -- no global involved)
+    # Compute mode indices sorted by persistence (|Lambda| descending)
+    sorted_mode_indices = np.argsort(-np.abs(Lambda))
+
+    # Spectrum
     plot_spectrum(Lambda, out_dir / "koopman_spectrum.png")
 
-    # Mode maps: plot_mode_maps writes koopman_mode_loadings.csv to
-    # cpp.RESULTS_DIR internally. Point that global at out_dir for the
-    # duration of this call only, then restore it, so the CSV lands here
-    # without permanently mutating the imported module's state.
+    # Mode maps
     saved_results_dir = cpp.RESULTS_DIR
     cpp.RESULTS_DIR = out_dir
     try:
@@ -112,7 +115,7 @@ def run_descriptives(model, out_dir: Path, top_k: int) -> np.ndarray:
     finally:
         cpp.RESULTS_DIR = saved_results_dir
 
-    # Block coupling B (rotation-invariant -- the comparable object)
+    # Block coupling B
     B = compute_block_norms(K, N_ROIS, H)
     B_df = pd.DataFrame(B, index=list(TARGET_ROIS), columns=list(TARGET_ROIS))
     B_df.index.name = "target_ROI"     # rows = target (t+1)
@@ -122,11 +125,11 @@ def run_descriptives(model, out_dir: Path, top_k: int) -> np.ndarray:
     print(f"Saved {B_path}")
     plot_block_coupling(B, TARGET_ROIS, out_dir / "K_region_coupling.png")
 
-    return B
+    return B, sorted_mode_indices
 
 
 # ================================================================================
-# BLOCK-COUPLING DIFFERENCE (post - pre) -- the one comparative output
+# BLOCK-COUPLING DIFFERENCE (post - pre) 
 # ================================================================================
 def plot_block_coupling_diff(B_diff: np.ndarray, roi_names, out_path: Path):
     """Diverging heatmap of B_post - B_pre, symmetric about 0."""
@@ -166,14 +169,32 @@ def main(top_k: int = M):
             raise FileNotFoundError(f"{name} checkpoint not found: {path}")
 
     B_by_model = {}
+
+    rank_indices_by_model = []
+    model_names = list(MODELS.keys())
+
     for name, ckpt_path in MODELS.items():
         print(f"\n=== {name} ===")
         model = load_model(ckpt_path)
         out_dir = OUT_BASE / name / "K_descriptives"
-        B_by_model[name] = run_descriptives(model, out_dir, top_k=top_k)
+        B, sorted_indices = run_descriptives(model, out_dir, top_k=top_k)
+
+        B_by_model[name] = B
+        rank_indices_by_model.append(sorted_indices)
+
+    COMPARISON_DIR.mkdir(parents=True, exist_ok=True)
+    idx_mat = np.vstack(rank_indices_by_model)  # Shape: (2, M)
+    
+    # Direct reuse of plot_mode_index_heatmap from analysis.loso_k_analysis
+    plot_mode_index_heatmap(
+        idx_mat=idx_mat,
+        fold_ids=model_names,  # Passes ['pre_model', 'post_model'] for row labels
+        M=M,
+        out_path=COMPARISON_DIR / "mode_persistence_rank_heatmap.png"
+    )
+
 
     # --- Comparative output: block-coupling difference (post - pre) ---
-    COMPARISON_DIR.mkdir(parents=True, exist_ok=True)
     B_pre = B_by_model["pre_model"]
     B_post = B_by_model["post_model"]
     B_diff = B_post - B_pre
