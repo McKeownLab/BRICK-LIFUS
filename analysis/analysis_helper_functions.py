@@ -30,7 +30,8 @@ def load_model(checkpoint_path: Path) -> BRICK:
         raise FileNotFoundError(f"No checkpoint found at {checkpoint_path}")
     ckpt = torch.load(checkpoint_path, map_location="cpu")
     model = BRICK(use_control=ckpt["use_control"], use_ic=ckpt["use_ic"],
-                  h=ckpt["h"], m=ckpt["m"])
+                  h=ckpt["h"], m=ckpt["m"],
+                  num_classes=ckpt.get("num_classes", 2))
     model.load_state_dict(ckpt["model_state_dict"])
     model.eval()
     print(f"Loaded model from {checkpoint_path}")
