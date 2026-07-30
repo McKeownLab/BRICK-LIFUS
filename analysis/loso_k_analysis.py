@@ -290,12 +290,10 @@ def plot_persistence_vs_loss(persistence_df: pd.DataFrame, loss_df: pd.DataFrame
         colors = ["red" if fid in NONCONVERGED_FOLDS else "steelblue"
                   for fid in merged["fold_id"]]
         ax.scatter(merged[persistence_col], merged[loss_col], c=colors, s=60)
-
-        # label every point, not just flagged ones
         for _, row in merged.iterrows():
-            ax.annotate(row["fold_id"], (row[persistence_col], row[loss_col]),
-                        fontsize=6.5, xytext=(4, 4), textcoords="offset points")
-
+            if row["fold_id"] in NONCONVERGED_FOLDS:
+                ax.annotate(row["fold_id"], (row[persistence_col], row[loss_col]),
+                            fontsize=7, xytext=(4, 4), textcoords="offset points")
         rho, p = spearmanr(merged[persistence_col], merged[loss_col])
         ax.set_xlabel(f"{persistence_col} (top-20 modes)")
         ax.set_ylabel(title)

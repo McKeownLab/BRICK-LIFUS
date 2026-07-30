@@ -243,9 +243,10 @@ def run_epoch(
         for i in batch_indices:
             item = subset.dataset[i]
             x = item["x"]
+            fc = item.get("fc")
             label = item["lifus_condition"]
 
-            out = model(x, label, kl_g0_weight=kl_g0_weight, kl_u_weight=kl_u_weight, apply_free_bits=apply_free_bits)
+            out = model(x, fc=fc, label=label, kl_g0_weight=kl_g0_weight, kl_u_weight=kl_u_weight, apply_free_bits=apply_free_bits)
             batch_losses.append(out["losses"]["loss_total"] / len(batch_indices))
 
             for key in totals:
