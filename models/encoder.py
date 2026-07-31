@@ -29,10 +29,12 @@ class Encoder(nn.Module):
         self.mu_head, self.logvar_head = make_head(), make_head()
         self.mu_proj, self.logvar_proj = nn.Linear(h, h), nn.Linear(h, h)
 
-    def encode_spatial(self, x):
+    def encode_spatial(self, x, fc=None):
         # (T, N) or (B, T, N) -> (N, H) or (B, N, H). row_mlp shares weights
         # across rows, so output row i tracks region i.
-        return self.row_mlp(compute_pearson(x))
+        if fc is None:
+            fc = compute_pearson(x)
+        return self.row_mlp(fc)
 
     def node_params(self, z0):
         # z0: (..., N, H) -> per-node mu, logvar of shape (..., N, H).
@@ -44,8 +46,8 @@ class Encoder(nn.Module):
         logvar = LOGVAR_MIN + 0.5 * (LOGVAR_MAX - LOGVAR_MIN) * (torch.tanh(logvar) + 1.0)
         return mu, logvar
 
-    def encode_distribution(self, x):
-        z0 = self.encode_spatial(x)               # (..., N, H)
+    def encode_distribution(self, x, fc=None):
+        z0 = self.encode_spatial(x, fc=fc)       # (..., N, H)
         batched = (z0.dim() == 3)
         if not batched:
             z0 = z0.unsqueeze(0)                  # FIX: real (B,...) handling
@@ -59,7 +61,7 @@ class Encoder(nn.Module):
             mu, logvar = mu.squeeze(0), logvar.squeeze(0)
         return mu, logvar
 
-    def forward(self, x: torch.Tensor):
+    def forward(self, x: torch.Tensor, fc: torch.Tensor = None):
         """
         Full encoder forward pass.
 
@@ -70,13 +72,14 @@ class Encoder(nn.Module):
 
         Args:
             x (torch.Tensor): BOLD timeseries, shape (T, N)
+            fc (torch.Tensor): Functional connectivity matrix, shape (N, N)
 
         Returns:
             g_0    (torch.Tensor): Sample, shape (M,)
             mu     (torch.Tensor): Posterior mean, shape (M,)
             logvar (torch.Tensor): Posterior log variance, shape (M,)
         """
-        mu, logvar = self.encode_distribution(x)
+        mu, logvar = self.encode_distribution(x, fc=fc)
 
         if self.training:
             eps = torch.randn_like(mu)

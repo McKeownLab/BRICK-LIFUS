@@ -171,6 +171,7 @@ class BRICK(nn.Module):
         self,
         x:              torch.Tensor,
         label:          torch.Tensor = None,
+        fc:             torch.Tensor = None,
         kl_g0_weight:   float = 1.0,
         kl_u_weight:    float = 1.0,
         apply_free_bits: bool = True,
@@ -204,7 +205,7 @@ class BRICK(nn.Module):
         # 1. Initial condition (encoder)
         # ------------------------------------------------------------------ #
         if self.use_ic:
-            g_0, mu_g0, logvar_g0 = self.encoder(x)
+            g_0, mu_g0, logvar_g0 = self.encoder(x, fc=fc) 
         else:
             # Ablation: no encoder, no learned initial condition, no KL_g0
             g_0       = torch.zeros(self.m, device=x.device)
