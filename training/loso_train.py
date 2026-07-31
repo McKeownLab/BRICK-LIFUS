@@ -25,11 +25,11 @@ Description:
     definitions and best val loss per fold.
 
 Usage:
-    python training/loso_study.py
-    python training/loso_study.py --n-val-subjects 3
-    python training/loso_study.py --epochs 100                    # pilot run
-    python training/loso_study.py --subjects sub-01 sub-02        # only these folds
-    python training/loso_study.py --no-ic                         # ablation, all folds
+    python training/loso_train.py
+    python training/loso_train.py --n-val-subjects 3
+    python training/loso_train.py --epochs 100                    # pilot run
+    python training/loso_train.py --subjects sub-01 sub-02        # only these folds
+    python training/loso_train.py --no-ic                         # ablation, all folds
 """
 
 import sys
@@ -44,8 +44,11 @@ sys.path.insert(0, str(ROOT_DIR))
 from training.train import train, DATA_DIR, N_EPOCHS, SEED
 from training.dataset import BRICKDataset
 
-LOSO_RESULTS_DIR      = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2"
-N_VAL_SUBJECTS_DEFAULT = 5
+LOSO_RUN_TAG     = "loso_19_fold_beta_0.2_14to4to1_split"
+BASE_RESULTS_DIR = ROOT_DIR / "results"
+LOSO_RESULTS_DIR = BASE_RESULTS_DIR / "training" / LOSO_RUN_TAG
+
+N_VAL_SUBJECTS_DEFAULT = 4
 
 
 # ================================================================================
@@ -112,6 +115,10 @@ def run_loso_study(
     Returns:
         dict mapping test_subject -> best_val_loss for that fold
     """
+
+    if subjects is None and LOSO_RESULTS_DIR.exists() and any(LOSO_RESULTS_DIR.iterdir()):
+        raise FileExistsError(f"{LOSO_RESULTS_DIR} is non-empty — change LOSO_RUN_TAG.")
+
     ds = BRICKDataset(DATA_DIR)
     all_subjects = get_all_subject_ids(ds)
     fold_subjects = subjects if subjects is not None else all_subjects
@@ -127,7 +134,7 @@ def run_loso_study(
     fold_results = {}
 
     for test_subject in fold_subjects:
-        run_name = f"loso_19_fold/fold_{test_subject}"
+        run_name = f"training/{LOSO_RUN_TAG}/fold_{test_subject}"
         split = make_loso_split(all_subjects, test_subject, n_val_subjects, split_seed)
         fold_splits[test_subject] = split
 
@@ -146,7 +153,7 @@ def run_loso_study(
             epsilon=epsilon,
             train_seed=train_seed,
             subject_split=split,
-            base_results_dir=ROOT_DIR / "results",
+            base_results_dir=BASE_RESULTS_DIR,
         )
         fold_results[test_subject] = best_val_loss
 
