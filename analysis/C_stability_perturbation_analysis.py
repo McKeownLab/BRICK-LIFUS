@@ -24,24 +24,31 @@ IMPORTANT CAVEAT -- C is diagonal over M=96 MODES, not 24 ROIs:
     There is no literal "this ROI's diagonal entry of C" -- mode space only
     maps to ROI space through the learned decoder W_bar_x. To perturb "ROI
     r" here, we: (1) compute this session's decoder-projected C value at
-    every ROI (roi_C = Re(W_bar_x) @ diag(C), the same linear decode used
-    for BOLD reconstruction, applied to the C-diagonal instead of a state
-    vector); (2) build a target vector that is zero everywhere except a
-    chosen absolute magnitude (PERT_MAGNITUDE) at ROI_IDX; (3) decompose
-    that target back into a mode-space delta via the Moore-Penrose
-    pseudoinverse of the decode matrix. Because the decode matrix is full
-    row rank (M=96 > N_ROIS=24), this decomposition is EXACT -- every other
-    ROI's decoded C value is unchanged by construction, not just "small."
+    every ROI (roi_C = B @ diag(C), the EXACT decode-from-g -- see
+    g_decode_matrix() below); (2) build a target vector that is zero
+    everywhere except a chosen absolute magnitude (PERT_MAGNITUDE) at
+    ROI_IDX; (3) decompose that target back into a mode-space delta via the
+    Moore-Penrose pseudoinverse of the decode matrix. Because the decode
+    matrix is full row rank (M=96 > N_ROIS=24), this decomposition is EXACT
+    -- every other ROI's decoded C value is unchanged by construction, not
+    just "small."
 
-    The one unverified piece: I don't have analysis_helper_functions.py's
-    actual project_to_roi()/compute_roi_projection_weights(), so
-    roi_decode_matrix() assumes "decoder-projected C in ROI space" means
-    Re(W_bar_x) @ diag(C) specifically. If that function does something
-    different (row-normalizes, uses |W_bar_x|, etc.), swap
-    roi_decode_matrix() to match it exactly.
+    CORRECTION (see g_decode_matrix() docstring): an earlier version of
+    this script used A = Re(W_bar_x) directly as the decode matrix. That is
+    the decoder for g_bar (post-P_inv, the space the eigenspace recurrence
+    actually lives in for READOUT), but C's contribution
+    (c_term = P_inv @ (C_t @ u_t)) enters in g-space, BEFORE P_inv is
+    applied -- the same space K operates in (K = P @ diag(Lambda) @ P_inv
+    acts on g). The mathematically exact decode is therefore
+    B = Re(W_bar_x @ P_inv), derived directly from
+    x_hat = Re(W_bar_x @ g_bar) = Re(W_bar_x @ P_inv @ g) = Re(B @ g).
+    This version uses B throughout. Any numbers from a prior run of this
+    script (printed roi_C values, decomposed delta_c, resulting plots) were
+    computed under the old A convention and are not directly comparable to
+    a re-run under B -- they answered a related but not identical question.
 
 Usage:
-    python analysis/loso_stability_perturbation.py
+    python analysis/C_stability_perturbation_analysis.py
 """
 
 import sys
@@ -67,7 +74,7 @@ SUBJECT_ID = "sub-fuspd07"       # which LOSO fold / held-out subject
 TARGET     = "vim"               # "vim" or "zi"
 SESSION    = "pre"               # "pre" or "post"
 
-LOSO_DIR = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2"
+LOSO_DIR = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2_13to1to5_split"
 CHECKPOINT_PATH = LOSO_DIR / f"fold_{SUBJECT_ID}" / "best_model_cls.pt"
 
 OUT_DIR = ROOT_DIR / "results" / "stability_perturbation"
@@ -190,21 +197,24 @@ def manual_rollout(Lambda, P_inv, g_0, u, W_bar_x, C_seq, return_decomposition=F
 # ================================================================================
 # 4. ROI <-> MODE DECODE MATRIX
 # ================================================================================
-def roi_decode_matrix(W_bar_x):
+def g_decode_matrix(W_bar_x, P_inv):
     """
-    A = Re(W_bar_x), shape (N_ROIS, M) real.
+    B = Re(W_bar_x @ P_inv), shape (N_ROIS, M) real.
 
-    ASSUMPTION -- I don't have analysis_helper_functions.py's actual
-    project_to_roi()/compute_roi_projection_weights() implementation, so
-    this mirrors the one decode formula I can confirm from brick.py itself:
-    x_recon = Re(W_bar_x @ g_bar). Applying that same linear map to
-    diag(C) (instead of g_bar) is the natural reading of "decoder-projected
-    C in ROI space," but if project_to_roi actually normalizes rows, uses
-    |W_bar_x| instead of Re(W_bar_x), etc., this needs to be swapped to
-    match exactly -- send me that file if you want this pinned down rather
-    than assumed.
+    This is the mathematically EXACT decode from g-space to ROI-space.
+    Derived directly from the model's own readout: x_hat = Re(W_bar_x @ g_bar),
+    and g_bar = P_inv @ g, so x_hat = Re(W_bar_x @ P_inv @ g) = Re(B @ g).
+
+    Why this matters here: C's contribution enters the recurrence as
+    c_term = P_inv @ (C_t @ u_t) -- i.e. "C @ u_t" is computed in g-space,
+    BEFORE P_inv is applied. So decoding diag(C) to ROI space needs the
+    g-space decoder B, not Re(W_bar_x) alone (which decodes g_bar, the
+    space AFTER P_inv -- correct for reading out x_hat itself, but one
+    step removed from where C actually lives). This also makes B the
+    right, shared decoder for the companion K-edge-perturbation analysis,
+    since K = P @ diag(Lambda) @ P_inv acts on that same g-space.
     """
-    return W_bar_x.real  # (N_ROIS, M)
+    return (W_bar_x @ P_inv).real  # (N_ROIS, M)
 
 
 def roi_from_modes(A, c):
@@ -631,9 +641,8 @@ def main():
               "check _assemble_u_bar/parallel_scan indexing before trusting "
               "the perturbation results below.")
 
-    # --- ROI <-> mode decode matrix (see roi_decode_matrix() docstring for
-    # the assumption this rests on) ---
-    A = roi_decode_matrix(W_bar_x)
+    # --- ROI <-> mode decode matrix (exact decode-from-g, see g_decode_matrix()) ---
+    A = g_decode_matrix(W_bar_x, P_inv)
 
     # --- Step schedule + perturbed C sequence ---
     schedule = build_step_schedule()
