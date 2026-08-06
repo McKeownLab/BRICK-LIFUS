@@ -112,7 +112,7 @@ TARGET_COLOR = {"vim": "#4C72B0", "zi": "#DD8452"}   # blue / orange
 # (228.9, 205.9 vs a 1.5-9.7 range across the other 17) -- see loso_loss_by_patient.csv.
 # Applied to every aggregate plot/stat below; NOT applied to the raw per-fold
 # cache or the loss table, so the convergence failure stays visible.
-EXCLUDED_SUBJECTS = {"sub-fuspd09", "sub-fuspd15", "sub-fuspd19"}
+EXCLUDED_SUBJECTS = {""}
 
 ALPHA = 0.05
 # Distribution-free consistency check, scaled to whatever N a given group has.
@@ -128,8 +128,9 @@ COLOR_MAP = {
     "neither":                "#d62728",  # red
 }
 
-LOSO_DIR  = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2"
-OUT_DIR   = LOSO_DIR / "results" / "loso_19_fold_beta_0.2"
+LOSO_RUN_TAG = "loso_19_fold_beta_0.2_14to4to1_split"
+LOSO_DIR = ROOT_DIR / "results" / "training" / LOSO_RUN_TAG
+OUT_DIR  = ROOT_DIR / "results" / "loso" / LOSO_RUN_TAG
 CACHE_DIR = OUT_DIR / "cache"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
