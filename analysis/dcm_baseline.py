@@ -45,9 +45,9 @@ sys.path.insert(0, str(ROOT_DIR))
 
 from preprocessing.load_preprocessed_data import load_all, TARGET_ROIS
 
-RESULTS_DIR = ROOT_DIR / "results" / "dcm_analysis"
-BRICK_RESULTS_DIR = ROOT_DIR / "results" / "final_model"
-FIGURES_DIR = ROOT_DIR / "results" / "dcm_analysis" / "figures_dcm"
+RESULTS_DIR = ROOT_DIR / "results" / "figures" / "dcm_analysis"
+BRICK_RESULTS_DIR = ROOT_DIR / "results" / "final_model" / "figures_and_stats"
+FIGURES_DIR = ROOT_DIR / "results" / "figures" / "dcm_analysis" / "figures_dcm"
 
 
 # ================================================================================
@@ -672,6 +672,37 @@ def power_sensitivity_report(
     }
 
 
+def plot_diff_heatmap_pooled(
+    var_results: list,
+    out_path:    Path,
+):
+    """
+    Raw mean(A_post - A_pre) heatmap, pooled across VIM and ZI (no target
+    split). Structurally matched to the pooled ΔK comparison from
+    train_task_states.py: both are single, unfiltered, non-target-split
+    difference heatmaps.
+    """
+    diff_pooled = np.mean([r["A_post"] - r["A_pre"] for r in var_results], axis=0)
+    vmax = np.abs(diff_pooled).max()
+
+    fig, ax = plt.subplots(figsize=(12, 10))
+    im = ax.imshow(diff_pooled, cmap="RdBu_r", vmin=-vmax, vmax=vmax, aspect="auto")
+    plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="\u0394 connection strength (raw)")
+
+    ax.set_xticks(range(len(TARGET_ROIS)))
+    ax.set_yticks(range(len(TARGET_ROIS)))
+    ax.set_xticklabels(TARGET_ROIS, rotation=90, fontsize=7)
+    ax.set_yticklabels(TARGET_ROIS, fontsize=7)
+    ax.set_title(f"Pooled mean \u0394A_eff (post \u2212 pre), VIM and ZI combined (n={len(var_results)})",
+                fontsize=12)
+
+    plt.tight_layout()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out_path, dpi=150, bbox_inches="tight")
+    print(f"Saved pooled diff heatmap to {out_path}")
+    plt.close()
+
+
 # ================================================================================
 # 9. MAIN
 # ================================================================================
@@ -792,4 +823,10 @@ if __name__ == "__main__":
         plot_diff_heatmap_comparison(
             vim_results, zi_results,
             FIGURES_DIR / "var_diff_heatmap_vim_vs_zi.png",
+        )
+
+        print("\nGenerating pooled (VIM+ZI combined) diff heatmap...")
+        plot_diff_heatmap_pooled(
+            var_results,
+            FIGURES_DIR / "var_diff_heatmap_pooled.png",
         )

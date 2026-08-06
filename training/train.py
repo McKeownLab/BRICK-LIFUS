@@ -11,10 +11,10 @@ Description:
         - Extract C_pre and C_post after training to compute Delta_C
 
     Training protocol (Zhou et al. 2025):
-        - Optimizer:  AdamW, lr=1e-3, weight_decay=1e-3
+        - Optimizer:  AdamW, lr=1e-4, weight_decay=1e-3
         - Scheduler:  ReduceLROnPlateau(mode='min', factor=0.5, patience=15, min_lr=1e-6) - changed
         - Early stop: stops once val classification loss regresses more than
-          cls_regression_threshold (default 0.2) above the best val cls loss
+          cls_regression_threshold (default 0.3) above the best val cls loss
           seen so far (i.e. the value that produced best_model_cls.pt)
         - Split:      7:1:2 by subject (no session leakage)
 
@@ -79,7 +79,6 @@ import config
 # ================================================================================
 N_EPOCHS        = 2700
 LR              = 1e-4
-SEED            = 42
 DATA_DIR        = ROOT_DIR / "data" / "preprocessed_data"
 RESULTS_DIR     = ROOT_DIR / "results" / "training"
 
@@ -289,7 +288,7 @@ def train(
     subject_split: dict = None,   # {"train": [...], "val": [...], "test": [...]} of subject IDs;
                                    # if provided, bypasses split_dataset()/split_seed entirely
     base_results_dir: Path = None,  # overrides RESULTS_DIR (e.g. for results/loso_19_fold/)
-    cls_regression_threshold: float = 0.2,  # stop once val_loss_cls exceeds the best
+    cls_regression_threshold: float = 0.3,  # stop once val_loss_cls exceeds the best
                                              # best_model_cls.pt value seen so far by
                                              # more than this amount
 ):
@@ -298,8 +297,8 @@ def train(
     _batch_size   = batch_size   if batch_size   is not None else config.BATCH_SIZE
     _beta         = beta         if beta         is not None else config.BETA
     _epsilon      = epsilon      if epsilon      is not None else config.EPSILON
-    _train_seed   = train_seed   if train_seed   is not None else SEED
-    _split_seed   = split_seed   if split_seed   is not None else SEED
+    _train_seed   = train_seed   if train_seed   is not None else config.SEED
+    _split_seed   = split_seed   if split_seed   is not None else config.SEED
     _base_results_dir = base_results_dir if base_results_dir is not None else RESULTS_DIR
 
     random.seed(_train_seed); np.random.seed(_train_seed); torch.manual_seed(_train_seed)
