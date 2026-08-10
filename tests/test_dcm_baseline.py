@@ -15,7 +15,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 from preprocessing.load_preprocessed_data import load_all, TARGET_ROIS
 from config import N_ROIS
-from analysis.dcm_baseline import fit_var, predict_mse, get_outgoing, get_incoming, run_var_ttest, build_comparison_table
+from analysis.var_baseline import fit_var, predict_mse, get_outgoing, get_incoming, run_var_ttest, build_comparison_table
 
 # ================================================================================
 # FIXTURES
