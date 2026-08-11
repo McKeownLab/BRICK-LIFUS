@@ -27,7 +27,7 @@ Training:
 
 **`training/`** — Everything needed to train BRICK. `train.py` is the main entry point (also defines the `BRICKDataset` class used across training and analysis); alongside it are variant training scripts for different setups (e.g. batched vs. non-batched runs), plus sweep and ablation-study scripts for running and comparing multiple configurations.
 
-**`analysis/`** — All analysis performed on our trained models and data: pre/post statistical testing, LOSO evaluation, perturbation/stability analysis, seed and batch-size robustness checks, and the descriptive K comparisons.
+**`analysis/`** — All analysis performed on our trained models and data: pre/post statistical testing, LOSO evaluation, perturbation/stability analysis, seed and batch-size robustness checks, and the descriptive K comparisons. NOTE: many directory names have changed since creation and may need to be edited.
 
 **`results/`** — Output of the above: trained model checkpoints, loss histories, and generated figures, organized by run/sweep/ablation name. 
 
