@@ -3,27 +3,21 @@
 LOSO fold-specific ΔC (post - pre) by patient
 ================================================================================
 
-For each completed LOSO fold in results/loso_19_fold/fold_{subject}/, loads
-that fold's best_model_cls.pt (the model trained with `subject` held out
-entirely) and evaluates it ONLY on `subject`'s own pre/post data -- every
-value plotted here is a genuine held-out evaluation, never data the
-checkpoint was trained on.
+For each completed LOSO fold in DIR, loads best_model_cls.pt and 
+evaluates it ONLY on the held-out `subject`'s pre/post data.
 
 EXCLUDED FOLDS (see EXCLUDED_SUBJECTS below): sub-fuspd09 and sub-fuspd15
 had reconstruction loss ~50-100x every other fold (228.9 and 205.9 vs a
 0.5-3 range across the other 17), indicating those folds' models failed
 to converge rather than genuinely fitting worse. Excluded by hand from all
-downstream aggregate plots/stats -- NOT from the raw per-fold cache or the
-loss table, so the convergence failure stays visible for diagnosis. Every
-plot produced by this script states the exclusion explicitly in its title.
+downstream aggregate plots/stats.
 
 THREE OUTPUTS:
     1. Per-patient ΔC grids (one figure per target, unchanged design from
        the original version) -- raw, unaggregated, one bar per patient.
     2. Pooled per-ROI statistical significance, split into 4 groups by
-       (target x treatment order) -- see "STATISTICAL TEST" below.
-    3. Held-out loss-per-patient table (unfiltered -- this is how the two
-       excluded folds were identified in the first place).
+       (target x treatment order) 
+    3. Held-out loss-per-patient table
 
 STATISTICAL TEST (pooled plot only):
     For each ROI, within each of 4 groups:
@@ -33,7 +27,7 @@ STATISTICAL TEST (pooled plot only):
         ZI  (2nd tx):  target=zi,  group_str=VIM_first
     a one-sample t-test (H0: mean delta = 0) is run across that group's
     patients. This is mathematically identical to a paired t-test on
-    pre/post values, since `delta` is already the paired difference.
+    pre/post values, since `delta` is the paired difference.
     BH-FDR correction is applied separately WITHIN each of the 4 groups
     across its 24 ROIs (4 independent corrections, not one pooled
     correction) -- deliberately not pooling 1st- and 2nd-treatment patients
@@ -41,42 +35,14 @@ STATISTICAL TEST (pooled plot only):
     treatment order could mask an order effect that's real but only visible
     within one arm of the crossover.
 
-    Groups are tested and colored separately (not just visually split by a
-    dotted line, as in the per-patient plots) precisely because "left half
-    of the plot" and "statistically independent test" are different things
-    -- the per-patient plots show a visual grouping, this test makes it a
-    formal one.
-
-COLORING (matches compare_batch_size.py / compare_seed_effects.py):
+COLORING:
     green  = FDR-significant (BH-corrected, alpha=0.05, within-group)
     blue   = not FDR-significant, but consistent direction across
              >= CONSISTENCY_FRACTION of that group's patients (a
              distribution-free check, since one-sample t-tests get shaky
              at the small per-group N here -- roughly 8-9 after exclusion)
-    red    = neither
-    Green explicitly takes priority over blue: a ROI/group that is BOTH
-    FDR-significant AND direction-consistent is colored green, never blue
-    -- enforced by evaluating the FDR condition first and short-circuiting
-    on it (see classify() below).
-
-CAUTION -- per-fold N=1, pooled N=17 (after exclusion): each individual
-fold only ever tells you ΔC for its one held-out patient; the statistical
-test is run on the POOLED table across all folds (each fold contributing
-exactly one patient's ΔC, computed from a model that never saw that
-patient), not per-fold. Consistent with the paired t-test + BH-FDR
-approach used everywhere else in this project.
-
-SHARED DEPENDENCY: model loading, K computation, and decoder-based ROI
-projection are imported from analysis.analysis_helper_functions (the same
-functions used by compare_pre_post.py, compare_batch_size.py, and
-compare_seed_effects.py). evaluate_fold() below does its own C extraction
-rather than using analysis_helper_functions.extract_all_C, because it
-calls the model with a different signature --
-model(x, label, kl_g0_weight=..., kl_u_weight=..., apply_free_bits=...)
-via BRICKDataset items, returning a dict with "C" (full MxM matrix) and
-"losses" -> {"loss_recon": ..., "loss_cls": ...} -- mirroring train.py's
-run_epoch() usage rather than the plain model(x) call extract_all_C
-assumes.
+    red    = neither/not significant
+    Green takes priority over blue.
 
 Usage:
     python analysis/loso_analyze.py

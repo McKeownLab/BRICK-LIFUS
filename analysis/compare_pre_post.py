@@ -2,8 +2,11 @@
 ================================================================================
 Pre/Post Analysis  —  K (descriptive) and C (inferential)
 ================================================================================
+Tests whether pre- vs. post-sonication brain activity differs, separately
+for the VIM and ZI stimulation targets, across the cohort, via paired,
+FDR-corrected tests on each subject's pre/post control signal (C).
 
-Design (settled, do not pool the two halves):
+Design:
 
     K is a GLOBAL parameter. nu_log, theta_log, P_inv, W_bar_x are all shared
     across the cohort, so K = P @ diag(Lambda) @ P_inv is ONE operator with no

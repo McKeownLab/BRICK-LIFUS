@@ -1,4 +1,30 @@
-# training/sweep.py
+"""
+================================================================================
+Hyperparameter Sweep
+================================================================================
+Trains BRICK once per value in SWEEP (currently BETA: 0.05, 0.1, 0.2, 0.5,
+0.8, 0.9, 0.95), holding every other hyperparameter at BASELINE, then
+compares runs.
+
+    - SWEEP_NAME (top of file) sets the output folder for this sweep --
+      change it before each new sweep run.
+    - For each (param, value) in SWEEP: starts from BASELINE, overrides that
+      one param, and trains via training.train.train(), saving to
+      results/training/<SWEEP_NAME>/sweep_<param>_<value>/.
+    - Plots val recon loss and val cls loss curves, one row per swept param,
+      one line per value, saved to
+      results/figures/<SWEEP_NAME>/sweep_results.png.
+    - Builds a best-val-loss comparison table (recon/cls) per value, plus
+      the range across values per param, saved as .txt alongside the plot.
+
+To sweep a different or additional hyperparameter, add an entry to SWEEP
+(key must match a BASELINE key).
+
+Usage:
+    python training/sweep.py
+"""
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 

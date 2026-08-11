@@ -2,23 +2,28 @@
 ================================================================================
 LOSO Stability / Perturbation Analysis
 ================================================================================
+Made to perturb a single ROI's diagonal-of-C entries in a held-out subject's 
+best_model_cls.pt.
 
 For a single LOSO fold's held-out subject, this script:
 
     1. Loads that fold's best_model_cls.pt.
     2. Runs the real encoder + control module on the subject's own BOLD
-       session to get g_0, C (base), and u_t -- exactly as forward() does.
+       session to get g_0, C (base), and u_t.
     3. Re-implements the eigenspace recurrence manually (mathematically
        identical to forward()'s parallel_scan + decode -- verified against
        the model's own x_recon as a sanity check at runtime) so that C can
-       be varied timestep-by-timestep, which parallel_scan cannot do (it
-       assumes a single fixed C for the whole session).
-    4. Builds a pulse schedule that perturbs one ROI's diagonal-of-C entries
-       at a time, cycling through all 24 ROIs, with a baseline and recovery
-       period of pure unperturbed dynamics at the start and end.
+       be varied timestep-by-timestep (forward() itself assumes a single
+       fixed C for the whole session).
+    4. Builds a step schedule that perturbs ONE chosen ROI (PERTURB_ROI_NAME)
+       at a single onset timestep (PULSE_START): unperturbed C_base before
+       onset, then a constant additive shift to that ROI's decoded C value
+       from onset to the end of the trajectory.
     5. Plots raw BOLD vs. unperturbed reconstruction vs. perturbed
        reconstruction, one panel per ROI, in a 6-row x 4-col grid (matching
-       the ncols=4 convention of loso_C_timeline_by_roi.png etc).
+       the ncols=4 convention of loso_C_timeline_by_roi.png etc), plus
+       supporting plots that isolate the perturbation's effect and its
+       K vs. C contribution.
 
 IMPORTANT CAVEAT -- C is diagonal over M=96 MODES, not 24 ROIs:
     There is no literal "this ROI's diagonal entry of C" -- mode space only
@@ -42,10 +47,6 @@ IMPORTANT CAVEAT -- C is diagonal over M=96 MODES, not 24 ROIs:
     acts on g). The mathematically exact decode is therefore
     B = Re(W_bar_x @ P_inv), derived directly from
     x_hat = Re(W_bar_x @ g_bar) = Re(W_bar_x @ P_inv @ g) = Re(B @ g).
-    This version uses B throughout. Any numbers from a prior run of this
-    script (printed roi_C values, decomposed delta_c, resulting plots) were
-    computed under the old A convention and are not directly comparable to
-    a re-run under B -- they answered a related but not identical question.
 
 Usage:
     python analysis/C_stability_perturbation_analysis.py
@@ -74,6 +75,7 @@ SUBJECT_ID = "sub-fuspd07"       # which LOSO fold / held-out subject
 TARGET     = "vim"               # "vim" or "zi"
 SESSION    = "pre"               # "pre" or "post"
 
+# Change directory for save
 LOSO_DIR = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2_13to1to5_split"
 CHECKPOINT_PATH = LOSO_DIR / f"fold_{SUBJECT_ID}" / "best_model_cls.pt"
 
@@ -85,7 +87,6 @@ PERTURB_ROI_NAME = "lh_GPe"                      # which ROI gets perturbed, by 
 ROI_IDX = TARGET_ROIS.index(PERTURB_ROI_NAME)    # resolved index into TARGET_ROIS
 
 PULSE_START  = T // 2     # timestep the perturbation switches on (120 of 240)
-                          # it stays on for the rest of the trajectory (no "off")
 
 PERT_MAGNITUDE = 2.0      # absolute additive value in ROI-space (decoder-projected
                           # C units), NOT scaled by std(roi_C) -- tune up/down from here

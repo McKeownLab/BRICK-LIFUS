@@ -1,10 +1,9 @@
 """
-Pareto frontier (reconstruction vs classification) from an existing OAT sweep.
+Pareto frontier (reconstruction vs classification) from an existing sweep.
 
-Reads the loss_history.csv files your sweep already produced and places one
+Reads the loss_history.csv files already produced by sweep and places one
 point per run at the SAME epoch its best_model_cls checkpoint was
-written (the model you actually analyze), not at the independent minima of
-each column (which are a phantom operating point at two different epochs).
+written.
 
 Recon axis is raw MSE = val_loss_recon * 2 * lambda_noise, so runs with
 different lambda_noise are comparable. cls axis is raw cross-entropy.

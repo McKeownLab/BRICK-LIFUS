@@ -11,6 +11,8 @@ Description:
 
         g_{t+1} = K g_t + C u_{t+1}
 
+        C u_{t+1} <- Control Module
+
     where C is a subject-specific diagonal control matrix and u_{1:T} are
     external control inputs generated from the BOLD observations.
 
@@ -18,8 +20,8 @@ Description:
         1. C  — diagonal control matrix, shape (M, M), diag values in (-1, 1)
         2. u  — control inputs, shape (T, M), sampled via reparameterization
         3. s_hat — task state prediction (pre/post), shape (num_classes,)
-        4.
-        5.
+        4. mu_u — control input mean, shape (T, M)
+        5. logvar_u — control input log-variance, shape (T, M)
 
     Architecture:
         - TransformerEncoder: x_{1:T} (T, N) -> E (M, T)

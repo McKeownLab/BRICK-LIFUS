@@ -1,3 +1,47 @@
+"""
+================================================================================
+Encoder Module
+================================================================================
+
+Description:
+    Implements the encoder component of BRICK (Section III-B): maps a
+    subject's BOLD timeseries (and its functional connectivity) to the
+    initial latent state g_0 fed into the Koopman recurrence
+
+        g_0 ~ q(g_0 | x) = N(mu, diag(exp(logvar)))
+
+    g_0 is per-ROI structured: it is built by  computing a per-region
+    embedding (row_mlp applied to the region's row of the FC matrix), then
+    passing all N regions through a shared, permutation-equivariant
+    Transformer head to get per-node mu/logvar, which are then flattened
+    row-major into a single length-M vector (M = N * H). This ROI-major
+    flatten (region i -> block [i*H:(i+1)*H]) is the layout that the
+    control-matrix/region interpretation elsewhere in the codebase (C,
+    decode matrices, etc.) assumes.
+
+    The module has three outputs:
+        1. g_0     — sampled initial latent state, shape (M,)
+                     (reparameterized sample in train mode, mu in eval mode)
+        2. mu      — posterior mean, shape (M,)
+        3. logvar  — posterior log-variance, shape (M,), clamped to
+                     [-6.0, 2.0] (sigma in [0.05, 2.7])
+
+    Architecture:
+        - row_mlp: FC row (N,) -> per-region embedding (H,), weights shared
+          across all N regions, so output row i tracks region i
+        - mu_head, logvar_head: separate TransformerEncoder stacks over the
+          N region-tokens (d_model=H) -- equivariant over regions; this is
+          the layer the paper's Phi-equivariance claim is about
+        - mu_proj, logvar_proj: per-region Linear(H, H) heads on top of the
+          transformer outputs
+        - logvar is squashed via tanh into [-6.0, 2.0] before being used
+        - row-major flatten: (N, H) -> (M,), N blocks of H
+
+References:
+    - Zhou et al. 2025 (BRICK paper), Section III-B
+"""
+
+
 import torch
 import torch.nn as nn
 from models.koopman_utils import compute_pearson

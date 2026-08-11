@@ -1,3 +1,34 @@
+"""
+================================================================================
+Seed Effects -- Per-ROI ΔC Stability Across Seeds
+================================================================================
+Checks whether the pre/post ΔC findings are robust to random seed choice, or
+an artifact of a particular seed.
+
+For each seed_type (TRAIN_SEED, SPLIT_SEED) x seed_value (42, 123, 2024) in
+the 3-seed sweep: loads that checkpoint, projects each subject's C matrix
+from mode-space to ROI-space, and runs paired FDR-corrected tests per ROI.
+Also checks per-subject sign-consistency of the delta in brain space, so an
+ROI can be flagged even without FDR significance if most subjects shift the
+same direction.
+
+Each (target, roi, seed_type, seed_value) is classified as:
+    "fdr_significant"       -- passes FDR-corrected paired test
+    "consistency_threshold" -- not significant, but >=CONSISTENCY_THRESHOLD
+                                subjects shift the same direction
+    "neither"               -- neither criterion met
+
+Results are cached per checkpoint under results/seed_effects/cache/ (use
+--force-recompute to bypass) and aggregated into
+results/seed_effects/seed_effects_roi_summary.csv. Outputs one bar-chart
+grid per (target, seed_type) (24 ROIs, ncols=4), delta-C by seed value,
+colored by classification, shared y-axis across all plots.
+
+Usage:
+    python analysis/seed_effects_analysis.py [--force-recompute]
+"""
+
+
 import sys
 import argparse
 from pathlib import Path

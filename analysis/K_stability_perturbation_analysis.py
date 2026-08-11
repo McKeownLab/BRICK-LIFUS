@@ -26,9 +26,7 @@ WHERE K LIVES, AND WHY THE DECODE MATCHES C's:
     SAME pre-P_inv space that C's contribution enters through:
     c_term = P_inv @ (C_t @ u_t)). So the exact decode-from-g used here,
     B = Re(W_bar_x @ P_inv), is identical in derivation to the one now used
-    in the (corrected) C script -- see g_decode_matrix() below. This is not
-    a coincidence: K and C are both "things that produce a g-space vector
-    each step," just via different mechanisms (propagation vs. injection).
+    in the C script -- see g_decode_matrix() below..
 
 DECODING K TO ROI SPACE, AND WHY THE SINGLE-EDGE PERTURBATION IS EXACT:
     K_roi = B @ K_g @ B_pinv, a two-sided generalization of the C script's
@@ -37,27 +35,22 @@ DECODING K TO ROI SPACE, AND WHY THE SINGLE-EDGE PERTURBATION IS EXACT:
         delta_K_g = B_pinv @ delta_K_roi @ B
     guarantees B @ delta_K_g @ B_pinv == delta_K_roi EXACTLY. If delta_K_roi
     is zero everywhere except one target cell, every OTHER cell of the
-    decoded K_roi heatmap is left at precisely zero perturbation -- the same
-    "not just small, actually zero" guarantee the C script relies on for
-    ROI-diagonal targets, just extended to an ROI x ROI matrix target here.
+    decoded K_roi heatmap is left at precisely zero perturbation.
 
 SOURCE ROI SELECTION:
-    Rather than guess a source ROI anatomically, select_source_roi() picks
-    whichever ROI has the strongest baseline |K_roi[target, source]| edge
-    already feeding into the target ROI (self-edge excluded), and prints
-    the full incoming row so the choice is auditable. Override via
-    SOURCE_ROI_NAME_OVERRIDE if you want a specific pathway instead.
+    select_source_roi() picks whichever ROI has the strongest baseline 
+    |K_roi[target, source]| edge, feeding into the target ROI (self-edge 
+    excluded), and prints the  incoming row so the choice is auditable. 
+    Override via SOURCE_ROI_NAME_OVERRIDE if you want a specific pathway 
+    instead.
 
 STABILITY, HANDLED BY CONSTRUCTION RATHER THAN AFTER THE FACT:
-    Per discussion: rather than running an unstable perturbation and
-    flagging it, clamp_for_stability() bisection-searches for the largest
+    Clamp_for_stability() bisection-searches for the largest
     scale <= 1.0 (fraction of the REQUESTED edge magnitude) that keeps the
     perturbed operator's spectral radius under STABILITY_MARGIN, and uses
     that scale from the start. If the full requested magnitude is already
     stable (the common case), nothing is scaled and this is silent besides
-    a confirmation line. The single-cell-only guarantee above is untouched
-    by this scaling -- scaling shrinks the one perturbed cell uniformly, it
-    doesn't reintroduce leakage into other cells.
+    a confirmation line.
 
 Usage:
     python analysis/K_stability_perturbation_analysis.py

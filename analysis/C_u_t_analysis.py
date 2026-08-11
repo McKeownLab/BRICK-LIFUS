@@ -6,10 +6,8 @@ Pre vs. Post Sonication: C vs. u_t Tradeoff, Pooled Across Patients & ROIs
 Population-level version of compare_C_and_u_tradeoff.py. Two changes from
 that single-subject, per-mode version:
 
-    1. POOLED ACROSS PATIENTS: loops over every completed LOSO fold (same
-       discovery logic as loso_analyze.py's find_folds()), excluding
-       EXCLUDED_SUBJECTS (sub-fuspd09/15/19 -- did not converge, same
-       exclusion used throughout this project).
+    1. POOLED ACROSS PATIENTS: loops over every completed LOSO fold, excluding
+       EXCLUDED_SUBJECTS
 
     2. DECODED TO ROI SPACE, NOT LEFT IN MODE SPACE: C and u_t are decoded
        from 96 modes to 24 ROIs via A = Re(W_bar_x) BEFORE computing
@@ -35,11 +33,6 @@ is unsigned magnitude. The term RMS uses the SIGNED product C[m]*u_t[t,m]
 (sign matters for the actual driving signal), decoded to ROI space before
 taking RMS over time.
 
-ASSUMPTION CARRIED FROM EARLIER SCRIPTS (unverified against the project's
-actual project_to_roi()): A = Re(W_bar_x) is assumed to be the correct
-mode-to-ROI decode. Flagging again here since it now affects a pooled,
-higher-stakes result.
-
 Usage:
     python analysis/compare_C_u_tradeoff_population.py
 """
@@ -63,6 +56,8 @@ from training.train import DATA_DIR
 # ================================================================================
 # CONFIG
 # ================================================================================
+
+# Change DIR
 LOSO_DIR = ROOT_DIR / "results" / "training" / "loso_19_fold_beta_0.2"
 
 # Toggle: True = analyze in raw 96-mode space (no ROI decode -- robustness
@@ -277,18 +272,15 @@ def plot_compensation_analysis(rows, out_path):
     Direct test of "does bigger C mean u_t compensates (smaller), keeping
     C*u_t about the same -- or does the term itself get bigger with C?"
     Pools pre AND post as separate observations of the general C-u_t
-    relationship (not a paired delta -- this is about the relationship
-    across regions/patients/sessions, not about a pre/post shift).
+    relationship.
 
     Left panel: u_t vs C. Negative correlation = compensation (bigger C,
     smaller u_t). No/positive correlation = no compensation.
 
-    Right panel: the term (C*u_t) vs C -- the more direct test. A flat
-    (near-zero slope) line means the term stays about the same size
-    regardless of C (compensation exactly cancels C's growth). A slope
-    close to mean(u_t) means the term scales roughly linearly with C,
-    i.e. u_t is NOT compensating -- bigger C really does mean more signal
-    getting through.
+    Right panel: the term (C*u_t) vs C. A flat (near-zero slope) line means 
+    the term stays about the same size regardless of C (compensation exactly 
+    cancels C's growth). A slope close to mean(u_t) means the term scales 
+    roughly linearly with C, i.e. u_t is NOT compensating.
     """
     C_all, u_all, term_all, session_all = [], [], [], []
     for r in rows:

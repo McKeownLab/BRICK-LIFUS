@@ -1,4 +1,29 @@
-# training/ablation_study.py
+"""
+================================================================================
+Ablation Study
+================================================================================
+Trains BRICK under four ablation conditions -- full, no_control, no_ic, and
+no_control_no_ic (crossing use_control x use_ic) -- then compares them.
+
+For a given --ablation-name (a folder to group the run under):
+  1. Trains all four conditions via training.train.train(), saving each to
+     results/training/<ablation_name>/ablation_<condition>/.
+  2. Plots train/val curves for every metric (total, recon, KL_g0, KL_u, cls),
+     one row per metric, one line per condition, saved to
+     results/figures/<ablation_name>/ablation_results.png.
+  3. Builds a best-val-loss comparison table (recon/cls/total) across
+     conditions, saved as .txt alongside the plot.
+
+Use --plot-only to regenerate the plot/table from existing results without
+retraining.
+
+Usage:
+    python training/ablation_study.py --ablation-name ablation_1
+    python training/ablation_study.py --ablation-name ablation_1 --epochs 500 --batch-size 8
+    python training/ablation_study.py --ablation-name ablation_1 --plot-only
+"""
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys

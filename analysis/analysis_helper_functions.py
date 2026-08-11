@@ -1,7 +1,6 @@
 # analysis/analysis_helper_functions.py
 """
-Functions used by more than one analysis script (compare_pre_post,
-compare_batch_size, compare_seed_effects, loso_analyze).
+Functions used by more than one analysis script.
 
 Section 1: extraction -- model loading, data verification, K, C.
 Section 2: statistical tests and projections that operate on extracted K/C.

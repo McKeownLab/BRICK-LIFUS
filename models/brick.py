@@ -19,15 +19,16 @@ Description:
     subjects. The control matrix C is per-subject-per-session, enabling
     individual-specific dynamics on top of shared brain dynamics.
 
-    For the LiFUS dataset:
+    For the LIFUS dataset:
         - Run forward pass with mpre  -> get C_pre
         - Run forward pass with mpost -> get C_post
         - Delta_C = C_post - C_pre captures sonication effect per subject
 
-    Training stabilization (not in original BRICK paper, added for N=19):
+    Training stabilization (not in original BRICK paper, added for N=19 stability, 
+    but unused in the final LIFUS analysis):
         - Separate KL annealing for g0 and u (see config.py)
         - Free bits on KL per dimension: gradient blocked below KL_U_FREE_BITS
-        - Tighter prior on u_t: N(0, U_PRIOR_SIGMA^2) instead of N(0, I)
+        - Tighter prior on u_t: N(0, U_PRIOR_SIGMA^2) instead of N(0, I) <- this was used
         - apply_free_bits=False for validation so true ELBO is evaluated
 
 References:
@@ -185,7 +186,7 @@ class BRICK(nn.Module):
                                             Optional -- if None, cls loss is skipped.
             kl_g0_weight    (float):        KL annealing weight for g0. Default 1.0.
             kl_u_weight     (float):        KL annealing weight for u. Default 1.0.
-            apply_free_bits (bool):         Apply free bits floor to KL terms.
+            apply_free_bits (bool):         Apply free bits floor to KL terms. (not used)
                                             True during training, False during validation
                                             so the true ELBO is evaluated.
 
@@ -277,12 +278,14 @@ class BRICK(nn.Module):
         """
         Normalized-ELBO losses on a single global per-observation scale.
 
-        Convention: the whole ELBO (recon + KL terms) is divided by T*N so
-        all components are on the same scale as F.mse_loss (mean over T*N).
+        Convention: the whole ELBO (recon + KL terms) is divided by T*M so
+        all components are on the same scale as F.mse_loss (mean over T*M).
+        THIS IS INTENTIONAL: Do not try to normalize KL_u by T*M and KL_g0 by M!!!
 
         KL_g0 and KL_u have separate annealing weights so they can be ramped
-        independently — KL_u is held at 0 for KL_U_DELAY_EPOCHS epochs so
+        independently if needed — KL_u is held at 0 for KL_U_DELAY_EPOCHS epochs so
         reconstruction can stabilize before the control pathway is regularized.
+        (not used in final implemetation, but left in for potential future use)
 
         Free bits (apply_free_bits=True during training only):
             Applied per-dimension BEFORE summing. Below the floor the term is
@@ -290,6 +293,7 @@ class BRICK(nn.Module):
             the pathway when it is encoding something useful.
             apply_free_bits=False during validation so the true ELBO is
             evaluated and early stopping is not biased by the floor constant.
+            (not used in final implemetation, but left in for potential future use)
 
         Tighter prior on u_t: N(0, U_PRIOR_SIGMA^2) instead of N(0, I).
             Raises the minimum achievable KL at initialization, preventing
@@ -328,7 +332,7 @@ class BRICK(nn.Module):
             )
             if apply_free_bits:
                 kl_g0_per_dim = torch.clamp(kl_g0_per_dim, min=self.free_bits_g0)
-            loss_kl_g0 = kl_g0_per_dim.sum() / (M*T)
+            loss_kl_g0 = kl_g0_per_dim.sum() / (T*M)
         else:
             loss_kl_g0 = torch.zeros((), device=x.device)
 

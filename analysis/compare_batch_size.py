@@ -1,3 +1,30 @@
+"""
+================================================================================
+Batch Size Sweep -- Per-ROI ΔC Analysis
+================================================================================
+For each batch size in BATCH_SIZES: loads that sweep's checkpoint, projects
+each subject's C matrix from mode-space to ROI-space, and runs paired
+pre-vs-post tests per ROI with FDR correction. Also checks per-subject sign-
+consistency of the delta in brain space, so an ROI can be flagged even
+without FDR significance if most subjects shift the same direction.
+
+Each (target, roi, batch_size) is classified as:
+    "fdr_significant"       -- passes FDR-corrected paired test
+    "consistency_threshold" -- not significant, but >=CONSISTENCY_THRESHOLD
+                                subjects shift the same direction
+    "neither"               -- neither criterion met
+
+Results are cached per checkpoint under results/batch_size/cache/ (use
+--force-recompute to bypass) and aggregated into
+results/batch_size/batch_size_roi_summary.csv. Outputs one bar-chart grid
+per target (24 ROIs, ncols=4), delta-C by batch size, colored by
+classification, shared y-axis per target.
+
+Usage:
+    python analysis/batch_size_analysis.py [--force-recompute]
+"""
+
+
 import sys
 import argparse
 from pathlib import Path

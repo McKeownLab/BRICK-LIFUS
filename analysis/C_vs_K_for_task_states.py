@@ -7,15 +7,9 @@ Prints a summary table of %C (instantaneous injection) vs %K (accumulated
 propagation) for the two task-state models, pooled across all 19 subjects,
 alongside the original single-subject LOSO-fold result for comparison.
 
-Reuses variance_decomposition(), manual_rollout(), encode_and_control(), and
-to_complex_tensor() from C_stability_perturbation_analysis.py rather than
-reimplementing them, so the math is guaranteed identical to the single-
-subject result already reported.
-
-POOLING METHOD (explicit, since this affects interpretation):
-    For each subject, this script runs the model's own encoder + control
-    module on that subject's session (unperturbed, i.e. C held constant
-    across the whole session), decomposes x_hat into x_K and x_C via
+POOLING METHOD:
+    For each subject, this script runs the model's encoder + control
+    module on that subject's session, decomposes x_hat into x_K and x_C via
     manual_rollout(..., return_decomposition=True), and computes that
     subject's own per-ROI variance decomposition via variance_decomposition().
 
@@ -40,10 +34,6 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
-# --- Patch: train_task_states.py still expects training.train.SEED, which
-# no longer exists there after the config.SEED consolidation. Rather than
-# editing train_task_states.py, inject it here before importing anything
-# that pulls from it. ---
 import training.train as _train_module
 import config as _config
 _train_module.SEED = _config.SEED
@@ -58,6 +48,7 @@ from analysis.C_stability_perturbation_analysis import (
 from training.train_task_states import TaskStateDataset
 from preprocessing.load_preprocessed_data import TARGET_ROIS
 
+# Change directory
 TASK_STATES_DIR = ROOT_DIR / "results" / "training" / "task_states"
 
 # Original single-subject result, already confirmed -- hardcoded here only

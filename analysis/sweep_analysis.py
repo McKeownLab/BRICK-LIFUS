@@ -5,11 +5,14 @@ Sweep Analysis Script
 For a given sweep (e.g. "sweep_1", "sweep_2"), this script:
   1. Plots per-run training curves (total, recon, KL_g0, KL_u, cls) with
      dotted vertical lines marking:
-        - best epoch by val total loss           (best_model.pt)               -> red
-        - best epoch by joint val/train cls loss  (best_model_cls.pt) -> purple
+        - best epoch by val total loss (best_model_recon.pt) -> red,
+          shown for reference only
+        - best epoch by joint val/train cls loss (best_model_cls.pt) ->
+          purple, the checkpoint used for all downstream analysis
      Saved into each run's own results folder.
-  2. Builds a sweep_summary table (best val total/recon/cls loss per run)
-     saved to results/training/<SWEEP_NAME>/sweep_summary.csv and .txt
+  2. Builds a sweep_summary table (best val total/recon/cls loss per run,
+     all read from best_model_cls.pt) saved to
+     results/training/<SWEEP_NAME>/sweep_summary.csv and .txt
 
 Usage:
     python training/sweep_analysis.py --sweep-name sweep_1
@@ -70,12 +73,11 @@ def load_csv(csv_path: Path) -> dict:
     return data
 
 
-def load_best_epoch(csv_path: Path, checkpoint_name: str = "best_model.pt") -> int | None:
+def load_best_epoch(csv_path: Path, checkpoint_name: str = "best_model_cls.pt") -> int | None:
     """
     Load the epoch recorded in a given checkpoint file in the same directory
-    as csv_path. Generalized from the original best_model.pt-only version so
-    it can also load best_model_cls.pt (or any other checkpoint
-    that stores an 'epoch' key).
+    as csv_path. Generalized so it can load either best_model_recon.pt or
+    best_model_cls.pt (or any other checkpoint that stores an 'epoch' key).
     """
     checkpoint_path = csv_path.parent / checkpoint_name
     if checkpoint_path.exists():
@@ -92,7 +94,9 @@ def load_val_metrics_at_checkpoint(csv_path: Path, checkpoint_name: str = "best_
     Return val_total, val_recon, val_cls all taken from the SAME epoch —
     the epoch recorded in the given checkpoint file. This ensures the three
     numbers describe one actual saved model, not three independently-best
-    epochs that may never have co-occurred.
+    epochs that may never have co-occurred. All downstream analyses use
+    best_model_cls.pt as the source of truth; best_model_recon.pt is only
+    ever shown as a visual reference line on the training curves.
 
     Returns None if the checkpoint doesn't exist for this run.
     """
@@ -118,7 +122,7 @@ def load_val_metrics_at_checkpoint(csv_path: Path, checkpoint_name: str = "best_
 # PLOTTING — single run
 # ================================================================================
 def plot_curves(data: dict, best_epoch_total: int | None,
-                 best_epoch_cls_preoverfit: int | None,
+                 best_epoch_cls: int | None,
                  run_name: str, out_path: Path):
     """Plot all loss curves for one run and save to out_path."""
     epochs = data["epochs"]
@@ -129,10 +133,10 @@ def plot_curves(data: dict, best_epoch_total: int | None,
             ax.plot(epochs, val, label="val", linewidth=1.5, linestyle="--")
         if best_epoch_total is not None:
             ax.axvline(x=best_epoch_total, color="red", linestyle=":", linewidth=1.5,
-                       label=f"best total (ep {best_epoch_total})")
-        if best_epoch_cls_preoverfit is not None:
-            ax.axvline(x=best_epoch_cls_preoverfit, color="purple", linestyle=":", linewidth=1.5,
-                       label=f"best cls preoverfit (ep {best_epoch_cls_preoverfit})")
+                       label=f"best recon (ep {best_epoch_total})")
+        if best_epoch_cls is not None:
+            ax.axvline(x=best_epoch_cls, color="purple", linestyle=":", linewidth=1.5,
+                       label=f"best cls (ep {best_epoch_cls})")
         ax.set_title(title)
         ax.set_xlabel("Epoch")
         ax.legend(fontsize=7)
@@ -223,11 +227,11 @@ def main():
         print(f"\nProcessing: {run_dir.name}")
 
         data = load_csv(csv_path)
-        best_epoch_total = load_best_epoch(csv_path, "best_model.pt")
-        best_epoch_cls_preoverfit = load_best_epoch(csv_path, "best_model_cls.pt")
+        best_epoch_total = load_best_epoch(csv_path, "best_model_recon.pt")
+        best_epoch_cls = load_best_epoch(csv_path, "best_model_cls.pt")
 
         out_path = run_dir / f"training_curves_{run_dir.name}.png"
-        plot_curves(data, best_epoch_total, best_epoch_cls_preoverfit, run_dir.name, out_path)
+        plot_curves(data, best_epoch_total, best_epoch_cls, run_dir.name, out_path)
 
     build_sweep_summary(csv_files, sweep_dir)
 

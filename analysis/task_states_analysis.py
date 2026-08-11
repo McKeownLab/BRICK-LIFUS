@@ -4,23 +4,17 @@
 Task-State Analysis: pre_model vs post_model
 ================================================================================
 
-Two analyses of the SAME two task-state models (pre_model, post_model; see
+Two analyses of two task-state models (pre_model, post_model; see
 train_task_states.py), sharing one output directory:
 
     PART 1: instantaneous-C vs accumulated-K variance decomposition, per
-    subject, aggregated with an explicit in-sample/held-out split. See PART 1
-    docstring below.
+    subject, aggregated with an explicit in-sample/held-out split.
 
     PART 2: descriptive K comparison (eigenvalue spectrum, mode maps,
     region-to-region block coupling) run separately per model, plus the one
     genuinely cross-model comparison -- block-coupling difference (post -
     pre). See PART 2 docstring below for why eigenvalues/mode maps are
     NOT compared mode-for-mode across the two models.
-
-Both parts read the same two checkpoints, so -- unlike an earlier version of
-this file that mistakenly combined this with the unrelated LOSO-fold K
-spectra -- these results are directly about the same underlying models and
-are meant to be read together.
 
 Usage:
     python analysis/task_state_variance_decomposition.py
@@ -55,7 +49,7 @@ from analysis.compare_pre_post import (
     eigenvalue_table, plot_spectrum, plot_mode_maps,
     compute_block_norms, plot_block_coupling,
 )
-from analysis.loso_k_analysis import plot_mode_index_heatmap
+from analysis.K_loso_analysis import plot_mode_index_heatmap
 
 TASK_STATES_TRAIN = ROOT_DIR / "results" / "training" / "task_states"
 OUT_DIR = ROOT_DIR / "results" / "figures" / "model_plots" / "task_states"
@@ -79,8 +73,7 @@ CRITICAL CAVEAT -- NOT a LOSO-style held-out evaluation:
     numbers below are IN-SAMPLE -- a fundamentally weaker claim than a
     genuinely held-out figure would be.
 
-    To keep that distinction visible rather than blending it away, this
-    section reports THREE tiers:
+    This section reports THREE tiers:
         1. ALL subjects (17 train + 2 val) -- most data, weakest claim.
         2. VAL-ONLY (2 subjects) -- genuinely held-out, but tiny N; a sanity
            check, not a robust estimate on its own.
@@ -244,10 +237,9 @@ def run_task_state_variance_decomposition():
 Runs the DESCRIPTIVE K analysis (eigenvalue table, spectrum, mode maps,
 region-to-region block coupling) separately on each of the two task-state
 models, saving each model's outputs to its own folder, then produces the
-ONE genuinely comparative output: the block-coupling difference (post - pre).
+ONE comparative output: the block-coupling difference (post - pre).
 
-WHY ONLY BLOCK COUPLING IS COMPARED (not eigenvalues mode-for-mode or mode
-maps): pre_model and post_model are two SEPARATELY-TRAINED models, so their
+pre_model and post_model are two SEPARATELY-TRAINED models, so their
 eigenbases are not aligned -- "mode M43" means different things in each, and
 eigenvector signs/phases plus the within-ROI H-channel basis are arbitrary
 per model. So:
@@ -260,17 +252,6 @@ per model. So:
       B IS comparable across independently-trained models. The post - pre
       difference is therefore the defensible "did region-to-region dynamics
       shift" view.
-
-IMPORTANT CAVEAT (not a code issue -- a claim-strength issue): with ONE model
-per condition, any B difference confounds "K genuinely differs pre vs post"
-with "two separate optimization runs landed differently." This is DESCRIPTIVE.
-A real test of whether K differs would need multiple training runs per
-condition (different seeds) to establish run-to-run variability.
-
-No edits to compare_pre_post.py are needed -- its individual compute/plot
-functions are imported and reused; only plot_mode_maps writes a CSV to that
-module's global RESULTS_DIR, so that global is temporarily pointed at the
-right folder around each call (scoped, restored after).
 """
 
 

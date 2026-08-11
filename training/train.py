@@ -23,6 +23,7 @@ Description:
         - KL_u:  held at 0 for KL_U_DELAY_EPOCHS, then ramped over KL_U_ANNEAL_EPOCHS
         - Free bits applied during training only (apply_free_bits=True)
         - Validation uses true ELBO (apply_free_bits=False) for honest evaluation
+        (not used in final implementation)
 
     Outputs saved to {base_results_dir}/{run_name}/ (base_results_dir defaults
     to results/training/, but can be overridden e.g. by loso_study.py to
