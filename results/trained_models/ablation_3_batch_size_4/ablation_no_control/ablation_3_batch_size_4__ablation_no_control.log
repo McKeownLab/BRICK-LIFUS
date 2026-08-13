@@ -1,0 +1,415 @@
+2026-08-13 12:34:34,212 | ============================================================
+2026-08-13 12:34:34,212 | BRICK Training -- ablation_3_batch_size_4/ablation_no_control
+2026-08-13 12:34:34,212 | N_ROIS=24, M=96, H=4, T=240
+2026-08-13 12:34:34,212 | Epochs=3000, LR=0.0001, WD=0.05, LAMBDA_NOISE=0.01, BATCH_SIZE=4, BETA=0.2, EPSILON=1.0
+2026-08-13 12:34:34,212 | cls_regression_threshold=0.3, use_control=False, use_ic=True
+2026-08-13 12:34:34,212 | KL annealing: g0 over 0 epochs, u delayed 0 then over 0 epochs
+2026-08-13 12:34:34,212 | Split mode: random split_dataset(seed=42)
+2026-08-13 12:34:34,212 | ============================================================
+2026-08-13 12:34:34,212 | Loading dataset...
+2026-08-13 12:34:34,256 | Split: 52 train | 4 val | 20 test items
+2026-08-13 12:34:34,278 | Model parameters: 554,702
+2026-08-13 12:34:34,278 | Starting training...
+2026-08-13 12:34:35,244 | Epoch    1/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=1013.4635 (recon=1266.8239, kl_g0=0.0054, kl_u=0.0000, cls=0.0000) | val=136.1552 | lr=1.00e-04 [PREOVERFIT-UPDATE]
+2026-08-13 12:34:35,254 |   -> New best val loss: 136.1552 (saved best_model_recon.pt)
+2026-08-13 12:34:35,263 |   -> New joint-best cls loss: val=0.0000, train=0.0000
+2026-08-13 12:34:36,153 |   -> New best val loss: 129.8225 (saved best_model_recon.pt)
+2026-08-13 12:34:37,306 |   -> New best val loss: 121.7666 (saved best_model_recon.pt)
+2026-08-13 12:34:38,163 |   -> New best val loss: 110.9039 (saved best_model_recon.pt)
+2026-08-13 12:34:38,927 |   -> New best val loss: 101.1754 (saved best_model_recon.pt)
+2026-08-13 12:34:39,830 |   -> New best val loss: 91.8055 (saved best_model_recon.pt)
+2026-08-13 12:34:40,468 |   -> New best val loss: 83.6258 (saved best_model_recon.pt)
+2026-08-13 12:34:41,125 |   -> New best val loss: 77.3369 (saved best_model_recon.pt)
+2026-08-13 12:34:41,766 |   -> New best val loss: 72.1583 (saved best_model_recon.pt)
+2026-08-13 12:34:42,386 | Epoch   10/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=118.9523 (recon=148.6851, kl_g0=0.0053, kl_u=0.0000, cls=0.0000) | val=67.8547 | lr=1.00e-04
+2026-08-13 12:34:42,397 |   -> New best val loss: 67.8547 (saved best_model_recon.pt)
+2026-08-13 12:34:43,345 |   -> New best val loss: 64.4361 (saved best_model_recon.pt)
+2026-08-13 12:34:44,101 |   -> New best val loss: 61.4992 (saved best_model_recon.pt)
+2026-08-13 12:34:45,390 |   -> New best val loss: 58.9065 (saved best_model_recon.pt)
+2026-08-13 12:34:46,341 |   -> New best val loss: 56.7531 (saved best_model_recon.pt)
+2026-08-13 12:34:47,280 |   -> New best val loss: 54.9492 (saved best_model_recon.pt)
+2026-08-13 12:34:48,145 |   -> New best val loss: 53.4617 (saved best_model_recon.pt)
+2026-08-13 12:34:48,991 |   -> New best val loss: 52.2167 (saved best_model_recon.pt)
+2026-08-13 12:34:49,631 |   -> New best val loss: 50.9879 (saved best_model_recon.pt)
+2026-08-13 12:34:50,680 |   -> New best val loss: 49.9504 (saved best_model_recon.pt)
+2026-08-13 12:34:51,513 | Epoch   20/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=76.1141 (recon=95.1372, kl_g0=0.0055, kl_u=0.0000, cls=0.0000) | val=49.0514 | lr=1.00e-04
+2026-08-13 12:34:51,523 |   -> New best val loss: 49.0514 (saved best_model_recon.pt)
+2026-08-13 12:34:52,256 |   -> New best val loss: 48.2566 (saved best_model_recon.pt)
+2026-08-13 12:34:52,955 |   -> New best val loss: 47.4726 (saved best_model_recon.pt)
+2026-08-13 12:34:53,855 |   -> New best val loss: 46.8434 (saved best_model_recon.pt)
+2026-08-13 12:34:54,828 |   -> New best val loss: 46.2087 (saved best_model_recon.pt)
+2026-08-13 12:34:56,098 |   -> New best val loss: 45.6492 (saved best_model_recon.pt)
+2026-08-13 12:34:56,857 |   -> New best val loss: 45.2191 (saved best_model_recon.pt)
+2026-08-13 12:34:58,113 |   -> New best val loss: 44.7228 (saved best_model_recon.pt)
+2026-08-13 12:34:58,976 |   -> New best val loss: 44.3446 (saved best_model_recon.pt)
+2026-08-13 12:35:00,215 |   -> New best val loss: 44.0114 (saved best_model_recon.pt)
+2026-08-13 12:35:01,471 | Epoch   30/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=61.0435 (recon=76.2986, kl_g0=0.0058, kl_u=0.0000, cls=0.0000) | val=43.6744 | lr=1.00e-04
+2026-08-13 12:35:01,487 |   -> New best val loss: 43.6744 (saved best_model_recon.pt)
+2026-08-13 12:35:02,406 |   -> New best val loss: 43.3678 (saved best_model_recon.pt)
+2026-08-13 12:35:03,054 |   -> New best val loss: 43.0792 (saved best_model_recon.pt)
+2026-08-13 12:35:03,794 |   -> New best val loss: 42.8020 (saved best_model_recon.pt)
+2026-08-13 12:35:04,909 |   -> New best val loss: 42.5629 (saved best_model_recon.pt)
+2026-08-13 12:35:05,751 |   -> New best val loss: 42.4732 (saved best_model_recon.pt)
+2026-08-13 12:35:07,035 |   -> New best val loss: 42.2663 (saved best_model_recon.pt)
+2026-08-13 12:35:08,115 |   -> New best val loss: 42.0226 (saved best_model_recon.pt)
+2026-08-13 12:35:08,818 |   -> New best val loss: 41.8287 (saved best_model_recon.pt)
+2026-08-13 12:35:09,563 |   -> New best val loss: 41.6635 (saved best_model_recon.pt)
+2026-08-13 12:35:10,182 | Epoch   40/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=52.7003 (recon=65.8693, kl_g0=0.0061, kl_u=0.0000, cls=0.0000) | val=41.5296 | lr=1.00e-04
+2026-08-13 12:35:10,192 |   -> New best val loss: 41.5296 (saved best_model_recon.pt)
+2026-08-13 12:35:11,213 |   -> New best val loss: 41.4086 (saved best_model_recon.pt)
+2026-08-13 12:35:12,329 |   -> New best val loss: 41.3198 (saved best_model_recon.pt)
+2026-08-13 12:35:13,442 |   -> New best val loss: 41.2286 (saved best_model_recon.pt)
+2026-08-13 12:35:14,561 |   -> New best val loss: 41.1123 (saved best_model_recon.pt)
+2026-08-13 12:35:15,841 |   -> New best val loss: 41.0083 (saved best_model_recon.pt)
+2026-08-13 12:35:16,812 |   -> New best val loss: 40.9460 (saved best_model_recon.pt)
+2026-08-13 12:35:17,824 |   -> New best val loss: 40.8929 (saved best_model_recon.pt)
+2026-08-13 12:35:18,670 |   -> New best val loss: 40.8103 (saved best_model_recon.pt)
+2026-08-13 12:35:19,452 |   -> New best val loss: 40.7558 (saved best_model_recon.pt)
+2026-08-13 12:35:20,683 | Epoch   50/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=47.9872 (recon=59.9776, kl_g0=0.0064, kl_u=0.0000, cls=0.0000) | val=40.6952 | lr=1.00e-04
+2026-08-13 12:35:20,699 |   -> New best val loss: 40.6952 (saved best_model_recon.pt)
+2026-08-13 12:35:21,418 |   -> New best val loss: 40.6286 (saved best_model_recon.pt)
+2026-08-13 12:35:22,200 |   -> New best val loss: 40.5638 (saved best_model_recon.pt)
+2026-08-13 12:35:22,938 |   -> New best val loss: 40.5409 (saved best_model_recon.pt)
+2026-08-13 12:35:23,998 |   -> New best val loss: 40.4939 (saved best_model_recon.pt)
+2026-08-13 12:35:25,068 |   -> New best val loss: 40.4308 (saved best_model_recon.pt)
+2026-08-13 12:35:25,842 |   -> New best val loss: 40.3997 (saved best_model_recon.pt)
+2026-08-13 12:35:26,497 |   -> New best val loss: 40.3664 (saved best_model_recon.pt)
+2026-08-13 12:35:27,214 |   -> New best val loss: 40.3343 (saved best_model_recon.pt)
+2026-08-13 12:35:28,423 |   -> New best val loss: 40.3269 (saved best_model_recon.pt)
+2026-08-13 12:35:29,581 | Epoch   60/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=45.0414 (recon=56.2950, kl_g0=0.0067, kl_u=0.0000, cls=0.0000) | val=40.2922 | lr=1.00e-04
+2026-08-13 12:35:29,597 |   -> New best val loss: 40.2922 (saved best_model_recon.pt)
+2026-08-13 12:35:30,415 |   -> New best val loss: 40.2572 (saved best_model_recon.pt)
+2026-08-13 12:35:31,378 |   -> New best val loss: 40.2231 (saved best_model_recon.pt)
+2026-08-13 12:35:32,330 |   -> New best val loss: 40.2035 (saved best_model_recon.pt)
+2026-08-13 12:35:33,128 |   -> New best val loss: 40.1885 (saved best_model_recon.pt)
+2026-08-13 12:35:34,101 |   -> New best val loss: 40.1663 (saved best_model_recon.pt)
+2026-08-13 12:35:34,816 |   -> New best val loss: 40.1304 (saved best_model_recon.pt)
+2026-08-13 12:35:35,649 |   -> New best val loss: 40.1142 (saved best_model_recon.pt)
+2026-08-13 12:35:36,958 |   -> New best val loss: 40.1040 (saved best_model_recon.pt)
+2026-08-13 12:35:37,606 | Epoch   70/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=43.3502 (recon=54.1807, kl_g0=0.0070, kl_u=0.0000, cls=0.0000) | val=40.0622 | lr=1.00e-04
+2026-08-13 12:35:37,616 |   -> New best val loss: 40.0622 (saved best_model_recon.pt)
+2026-08-13 12:35:38,330 |   -> New best val loss: 40.0461 (saved best_model_recon.pt)
+2026-08-13 12:35:39,456 |   -> New best val loss: 40.0370 (saved best_model_recon.pt)
+2026-08-13 12:35:40,141 |   -> New best val loss: 40.0355 (saved best_model_recon.pt)
+2026-08-13 12:35:41,182 |   -> New best val loss: 40.0288 (saved best_model_recon.pt)
+2026-08-13 12:35:41,862 |   -> New best val loss: 40.0205 (saved best_model_recon.pt)
+2026-08-13 12:35:42,537 |   -> New best val loss: 40.0113 (saved best_model_recon.pt)
+2026-08-13 12:35:43,365 |   -> New best val loss: 40.0012 (saved best_model_recon.pt)
+2026-08-13 12:35:44,317 |   -> New best val loss: 39.9994 (saved best_model_recon.pt)
+2026-08-13 12:35:46,499 | Epoch   80/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=42.1853 (recon=52.7243, kl_g0=0.0073, kl_u=0.0000, cls=0.0000) | val=39.9739 | lr=1.00e-04
+2026-08-13 12:35:46,515 |   -> New best val loss: 39.9739 (saved best_model_recon.pt)
+2026-08-13 12:35:47,294 |   -> New best val loss: 39.9558 (saved best_model_recon.pt)
+2026-08-13 12:35:48,220 |   -> New best val loss: 39.9474 (saved best_model_recon.pt)
+2026-08-13 12:35:54,219 |   -> New best val loss: 39.9343 (saved best_model_recon.pt)
+2026-08-13 12:35:54,886 |   -> New best val loss: 39.9248 (saved best_model_recon.pt)
+2026-08-13 12:35:55,607 | Epoch   90/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=41.3844 (recon=51.7229, kl_g0=0.0076, kl_u=0.0000, cls=0.0000) | val=39.9247 | lr=1.00e-04
+2026-08-13 12:35:55,617 |   -> New best val loss: 39.9247 (saved best_model_recon.pt)
+2026-08-13 12:35:56,365 |   -> New best val loss: 39.9171 (saved best_model_recon.pt)
+2026-08-13 12:35:58,597 |   -> New best val loss: 39.9110 (saved best_model_recon.pt)
+2026-08-13 12:36:02,711 |   -> New best val loss: 39.9037 (saved best_model_recon.pt)
+2026-08-13 12:36:03,961 |   -> New best val loss: 39.9028 (saved best_model_recon.pt)
+2026-08-13 12:36:04,692 |   -> New best val loss: 39.8983 (saved best_model_recon.pt)
+2026-08-13 12:36:05,928 | Epoch  100/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.8666 (recon=51.0754, kl_g0=0.0078, kl_u=0.0000, cls=0.0000) | val=39.8947 | lr=1.00e-04
+2026-08-13 12:36:05,947 |   -> New best val loss: 39.8947 (saved best_model_recon.pt)
+2026-08-13 12:36:06,869 |   -> New best val loss: 39.8940 (saved best_model_recon.pt)
+2026-08-13 12:36:10,448 |   -> New best val loss: 39.8934 (saved best_model_recon.pt)
+2026-08-13 12:36:11,114 |   -> New best val loss: 39.8861 (saved best_model_recon.pt)
+2026-08-13 12:36:15,507 | Epoch  110/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.6464 (recon=50.8000, kl_g0=0.0080, kl_u=0.0000, cls=0.0000) | val=39.8846 | lr=1.00e-04
+2026-08-13 12:36:15,517 |   -> New best val loss: 39.8846 (saved best_model_recon.pt)
+2026-08-13 12:36:16,182 |   -> New best val loss: 39.8795 (saved best_model_recon.pt)
+2026-08-13 12:36:19,080 |   -> New best val loss: 39.8771 (saved best_model_recon.pt)
+2026-08-13 12:36:19,977 |   -> New best val loss: 39.8739 (saved best_model_recon.pt)
+2026-08-13 12:36:23,718 | Epoch  120/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.3154 (recon=50.3860, kl_g0=0.0082, kl_u=0.0000, cls=0.0000) | val=39.8780 | lr=1.00e-04
+2026-08-13 12:36:26,565 |   -> New best val loss: 39.8668 (saved best_model_recon.pt)
+2026-08-13 12:36:32,629 | Epoch  130/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.2135 (recon=50.2585, kl_g0=0.0083, kl_u=0.0000, cls=0.0000) | val=39.8892 | lr=1.00e-04
+2026-08-13 12:36:41,463 | Epoch  140/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.1029 (recon=50.1202, kl_g0=0.0084, kl_u=0.0000, cls=0.0000) | val=39.8938 | lr=5.00e-05
+2026-08-13 12:36:50,893 | Epoch  150/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=40.0466 (recon=50.0498, kl_g0=0.0085, kl_u=0.0000, cls=0.0000) | val=39.9065 | lr=5.00e-05
+2026-08-13 12:37:01,784 | Epoch  160/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9980 (recon=49.9890, kl_g0=0.0085, kl_u=0.0000, cls=0.0000) | val=39.9208 | lr=2.50e-05
+2026-08-13 12:37:12,257 | Epoch  170/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9596 (recon=49.9410, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9360 | lr=2.50e-05
+2026-08-13 12:37:23,759 | Epoch  180/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9526 (recon=49.9322, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9425 | lr=1.25e-05
+2026-08-13 12:37:33,589 | Epoch  190/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9476 (recon=49.9259, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9595 | lr=6.25e-06
+2026-08-13 12:37:42,465 | Epoch  200/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9264 (recon=49.8995, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9641 | lr=6.25e-06
+2026-08-13 12:37:50,968 | Epoch  210/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9437 (recon=49.9210, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9753 | lr=3.13e-06
+2026-08-13 12:38:00,255 | Epoch  220/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9052 (recon=49.8729, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9747 | lr=1.56e-06
+2026-08-13 12:38:09,250 | Epoch  230/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9557 (recon=49.9360, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9761 | lr=1.56e-06
+2026-08-13 12:38:19,902 | Epoch  240/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9665 (recon=49.9496, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9765 | lr=1.00e-06
+2026-08-13 12:38:27,763 | Epoch  250/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8990 (recon=49.8651, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9771 | lr=1.00e-06
+2026-08-13 12:38:38,694 | Epoch  260/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9481 (recon=49.9265, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9759 | lr=1.00e-06
+2026-08-13 12:38:50,184 | Epoch  270/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9198 (recon=49.8911, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9782 | lr=1.00e-06
+2026-08-13 12:38:59,007 | Epoch  280/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9341 (recon=49.9090, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9773 | lr=1.00e-06
+2026-08-13 12:39:09,370 | Epoch  290/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9384 (recon=49.9144, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9793 | lr=1.00e-06
+2026-08-13 12:39:18,656 | Epoch  300/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9502 (recon=49.9291, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9797 | lr=1.00e-06
+2026-08-13 12:39:29,031 | Epoch  310/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9319 (recon=49.9063, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9803 | lr=1.00e-06
+2026-08-13 12:39:38,706 | Epoch  320/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9526 (recon=49.9321, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9811 | lr=1.00e-06
+2026-08-13 12:39:48,563 | Epoch  330/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9024 (recon=49.8693, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9815 | lr=1.00e-06
+2026-08-13 12:39:59,507 | Epoch  340/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9388 (recon=49.9148, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9821 | lr=1.00e-06
+2026-08-13 12:40:09,261 | Epoch  350/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9590 (recon=49.9402, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9836 | lr=1.00e-06
+2026-08-13 12:40:19,643 | Epoch  360/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9098 (recon=49.8786, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9861 | lr=1.00e-06
+2026-08-13 12:40:29,205 | Epoch  370/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9204 (recon=49.8919, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9851 | lr=1.00e-06
+2026-08-13 12:40:37,537 | Epoch  380/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9167 (recon=49.8872, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9867 | lr=1.00e-06
+2026-08-13 12:40:48,080 | Epoch  390/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9279 (recon=49.9012, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9873 | lr=1.00e-06
+2026-08-13 12:40:58,507 | Epoch  400/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9218 (recon=49.8936, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9871 | lr=1.00e-06
+2026-08-13 12:41:08,981 | Epoch  410/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9259 (recon=49.8988, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9870 | lr=1.00e-06
+2026-08-13 12:41:19,394 | Epoch  420/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9034 (recon=49.8706, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9875 | lr=1.00e-06
+2026-08-13 12:41:28,397 | Epoch  430/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9146 (recon=49.8846, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9893 | lr=1.00e-06
+2026-08-13 12:41:38,418 | Epoch  440/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9005 (recon=49.8670, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9922 | lr=1.00e-06
+2026-08-13 12:41:48,715 | Epoch  450/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8956 (recon=49.8608, kl_g0=0.0086, kl_u=0.0000, cls=0.0000) | val=39.9921 | lr=1.00e-06
+2026-08-13 12:42:00,002 | Epoch  460/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9198 (recon=49.8910, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=39.9945 | lr=1.00e-06
+2026-08-13 12:42:09,949 | Epoch  470/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8986 (recon=49.8646, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=39.9941 | lr=1.00e-06
+2026-08-13 12:42:19,800 | Epoch  480/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9324 (recon=49.9068, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=39.9968 | lr=1.00e-06
+2026-08-13 12:42:30,249 | Epoch  490/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9204 (recon=49.8918, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=39.9978 | lr=1.00e-06
+2026-08-13 12:42:39,510 | Epoch  500/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9047 (recon=49.8722, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=39.9989 | lr=1.00e-06
+2026-08-13 12:42:46,858 | Epoch  510/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9057 (recon=49.8735, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0009 | lr=1.00e-06
+2026-08-13 12:42:55,615 | Epoch  520/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9150 (recon=49.8850, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0020 | lr=1.00e-06
+2026-08-13 12:43:04,104 | Epoch  530/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9326 (recon=49.9071, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0028 | lr=1.00e-06
+2026-08-13 12:43:14,781 | Epoch  540/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9128 (recon=49.8824, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0014 | lr=1.00e-06
+2026-08-13 12:43:24,089 | Epoch  550/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9129 (recon=49.8825, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0038 | lr=1.00e-06
+2026-08-13 12:43:34,780 | Epoch  560/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9031 (recon=49.8702, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0019 | lr=1.00e-06
+2026-08-13 12:43:45,340 | Epoch  570/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8697 (recon=49.8284, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0030 | lr=1.00e-06
+2026-08-13 12:43:54,922 | Epoch  580/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9117 (recon=49.8810, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0072 | lr=1.00e-06
+2026-08-13 12:44:03,651 | Epoch  590/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9199 (recon=49.8912, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0076 | lr=1.00e-06
+2026-08-13 12:44:13,534 | Epoch  600/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9024 (recon=49.8693, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0083 | lr=1.00e-06
+2026-08-13 12:44:23,596 | Epoch  610/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9031 (recon=49.8702, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0110 | lr=1.00e-06
+2026-08-13 12:44:35,021 | Epoch  620/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8900 (recon=49.8539, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0114 | lr=1.00e-06
+2026-08-13 12:44:47,345 | Epoch  630/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8778 (recon=49.8386, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0126 | lr=1.00e-06
+2026-08-13 12:44:55,261 | Epoch  640/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9249 (recon=49.8975, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0144 | lr=1.00e-06
+2026-08-13 12:45:06,736 | Epoch  650/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9129 (recon=49.8824, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0104 | lr=1.00e-06
+2026-08-13 12:45:15,815 | Epoch  660/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8858 (recon=49.8485, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0115 | lr=1.00e-06
+2026-08-13 12:45:25,923 | Epoch  670/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9192 (recon=49.8904, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0132 | lr=1.00e-06
+2026-08-13 12:45:35,760 | Epoch  680/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9002 (recon=49.8666, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0152 | lr=1.00e-06
+2026-08-13 12:45:44,369 | Epoch  690/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9095 (recon=49.8782, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0171 | lr=1.00e-06
+2026-08-13 12:45:53,955 | Epoch  700/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9103 (recon=49.8792, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0166 | lr=1.00e-06
+2026-08-13 12:46:02,454 | Epoch  710/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8929 (recon=49.8574, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0178 | lr=1.00e-06
+2026-08-13 12:46:11,217 | Epoch  720/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8951 (recon=49.8602, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0188 | lr=1.00e-06
+2026-08-13 12:46:21,046 | Epoch  730/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8843 (recon=49.8467, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0182 | lr=1.00e-06
+2026-08-13 12:46:30,718 | Epoch  740/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8841 (recon=49.8465, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0191 | lr=1.00e-06
+2026-08-13 12:46:42,231 | Epoch  750/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8734 (recon=49.8331, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0235 | lr=1.00e-06
+2026-08-13 12:46:51,689 | Epoch  760/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9058 (recon=49.8735, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0259 | lr=1.00e-06
+2026-08-13 12:47:01,055 | Epoch  770/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8366 (recon=49.7870, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0258 | lr=1.00e-06
+2026-08-13 12:47:10,875 | Epoch  780/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8924 (recon=49.8567, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0284 | lr=1.00e-06
+2026-08-13 12:47:20,945 | Epoch  790/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9159 (recon=49.8862, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0285 | lr=1.00e-06
+2026-08-13 12:47:29,376 | Epoch  800/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8338 (recon=49.7836, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0285 | lr=1.00e-06
+2026-08-13 12:47:36,481 | Epoch  810/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8939 (recon=49.8586, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0276 | lr=1.00e-06
+2026-08-13 12:47:45,243 | Epoch  820/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8567 (recon=49.8121, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0302 | lr=1.00e-06
+2026-08-13 12:47:54,384 | Epoch  830/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9036 (recon=49.8708, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0325 | lr=1.00e-06
+2026-08-13 12:48:03,887 | Epoch  840/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8695 (recon=49.8282, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0339 | lr=1.00e-06
+2026-08-13 12:48:15,184 | Epoch  850/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8459 (recon=49.7987, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0320 | lr=1.00e-06
+2026-08-13 12:48:26,887 | Epoch  860/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8878 (recon=49.8510, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0356 | lr=1.00e-06
+2026-08-13 12:48:36,197 | Epoch  870/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8849 (recon=49.8473, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0340 | lr=1.00e-06
+2026-08-13 12:48:45,899 | Epoch  880/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9028 (recon=49.8698, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0374 | lr=1.00e-06
+2026-08-13 12:48:54,296 | Epoch  890/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8761 (recon=49.8364, kl_g0=0.0087, kl_u=0.0000, cls=0.0000) | val=40.0377 | lr=1.00e-06
+2026-08-13 12:49:03,632 | Epoch  900/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8636 (recon=49.8207, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0345 | lr=1.00e-06
+2026-08-13 12:49:14,130 | Epoch  910/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8566 (recon=49.8120, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0351 | lr=1.00e-06
+2026-08-13 12:49:23,980 | Epoch  920/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8810 (recon=49.8425, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0336 | lr=1.00e-06
+2026-08-13 12:49:33,076 | Epoch  930/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8387 (recon=49.7897, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0303 | lr=1.00e-06
+2026-08-13 12:49:42,342 | Epoch  940/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8708 (recon=49.8298, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0339 | lr=1.00e-06
+2026-08-13 12:49:53,260 | Epoch  950/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9085 (recon=49.8768, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0379 | lr=1.00e-06
+2026-08-13 12:50:02,720 | Epoch  960/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.9024 (recon=49.8693, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0377 | lr=1.00e-06
+2026-08-13 12:50:10,554 | Epoch  970/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8693 (recon=49.8279, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0373 | lr=1.00e-06
+2026-08-13 12:50:20,107 | Epoch  980/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8756 (recon=49.8357, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0441 | lr=1.00e-06
+2026-08-13 12:50:29,031 | Epoch  990/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8415 (recon=49.7931, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0497 | lr=1.00e-06
+2026-08-13 12:50:37,605 | Epoch 1000/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8703 (recon=49.8291, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0544 | lr=1.00e-06
+2026-08-13 12:50:48,298 | Epoch 1010/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8550 (recon=49.8100, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0520 | lr=1.00e-06
+2026-08-13 12:50:58,321 | Epoch 1020/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8267 (recon=49.7746, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0538 | lr=1.00e-06
+2026-08-13 12:51:07,533 | Epoch 1030/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8278 (recon=49.7760, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0523 | lr=1.00e-06
+2026-08-13 12:51:16,853 | Epoch 1040/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8269 (recon=49.7748, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0541 | lr=1.00e-06
+2026-08-13 12:51:26,695 | Epoch 1050/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8513 (recon=49.8053, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0515 | lr=1.00e-06
+2026-08-13 12:51:36,587 | Epoch 1060/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8458 (recon=49.7985, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0597 | lr=1.00e-06
+2026-08-13 12:51:47,476 | Epoch 1070/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8436 (recon=49.7957, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0594 | lr=1.00e-06
+2026-08-13 12:51:58,635 | Epoch 1080/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8647 (recon=49.8221, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0562 | lr=1.00e-06
+2026-08-13 12:52:09,802 | Epoch 1090/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8848 (recon=49.8472, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0583 | lr=1.00e-06
+2026-08-13 12:52:18,982 | Epoch 1100/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8490 (recon=49.8024, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0657 | lr=1.00e-06
+2026-08-13 12:52:29,027 | Epoch 1110/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8066 (recon=49.7494, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0655 | lr=1.00e-06
+2026-08-13 12:52:38,668 | Epoch 1120/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8294 (recon=49.7779, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0647 | lr=1.00e-06
+2026-08-13 12:52:48,166 | Epoch 1130/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8642 (recon=49.8214, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0668 | lr=1.00e-06
+2026-08-13 12:52:58,731 | Epoch 1140/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8080 (recon=49.7512, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0746 | lr=1.00e-06
+2026-08-13 12:53:07,965 | Epoch 1150/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8590 (recon=49.8149, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0716 | lr=1.00e-06
+2026-08-13 12:53:18,049 | Epoch 1160/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8412 (recon=49.7927, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0715 | lr=1.00e-06
+2026-08-13 12:53:28,348 | Epoch 1170/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8374 (recon=49.7879, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0670 | lr=1.00e-06
+2026-08-13 12:53:39,730 | Epoch 1180/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8082 (recon=49.7514, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0630 | lr=1.00e-06
+2026-08-13 12:53:49,361 | Epoch 1190/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8216 (recon=49.7682, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0673 | lr=1.00e-06
+2026-08-13 12:53:59,825 | Epoch 1200/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8553 (recon=49.8103, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0754 | lr=1.00e-06
+2026-08-13 12:54:08,939 | Epoch 1210/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8274 (recon=49.7754, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0748 | lr=1.00e-06
+2026-08-13 12:54:18,783 | Epoch 1220/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8170 (recon=49.7625, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0767 | lr=1.00e-06
+2026-08-13 12:54:28,391 | Epoch 1230/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8211 (recon=49.7675, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0827 | lr=1.00e-06
+2026-08-13 12:54:40,259 | Epoch 1240/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8466 (recon=49.7995, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0890 | lr=1.00e-06
+2026-08-13 12:54:51,357 | Epoch 1250/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8496 (recon=49.8031, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0861 | lr=1.00e-06
+2026-08-13 12:55:01,657 | Epoch 1260/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8165 (recon=49.7619, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0834 | lr=1.00e-06
+2026-08-13 12:55:11,174 | Epoch 1270/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8354 (recon=49.7854, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0931 | lr=1.00e-06
+2026-08-13 12:55:21,187 | Epoch 1280/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8129 (recon=49.7573, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0848 | lr=1.00e-06
+2026-08-13 12:55:31,380 | Epoch 1290/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8320 (recon=49.7811, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0913 | lr=1.00e-06
+2026-08-13 12:55:42,282 | Epoch 1300/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8097 (recon=49.7533, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0998 | lr=1.00e-06
+2026-08-13 12:55:54,529 | Epoch 1310/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7837 (recon=49.7208, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.0994 | lr=1.00e-06
+2026-08-13 12:56:05,659 | Epoch 1320/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8059 (recon=49.7485, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.1092 | lr=1.00e-06
+2026-08-13 12:56:18,068 | Epoch 1330/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8298 (recon=49.7784, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.1198 | lr=1.00e-06
+2026-08-13 12:56:30,109 | Epoch 1340/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8111 (recon=49.7550, kl_g0=0.0088, kl_u=0.0000, cls=0.0000) | val=40.1290 | lr=1.00e-06
+2026-08-13 12:56:40,160 | Epoch 1350/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8347 (recon=49.7845, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1274 | lr=1.00e-06
+2026-08-13 12:56:51,048 | Epoch 1360/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8176 (recon=49.7631, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1214 | lr=1.00e-06
+2026-08-13 12:57:00,239 | Epoch 1370/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8012 (recon=49.7426, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1107 | lr=1.00e-06
+2026-08-13 12:57:08,861 | Epoch 1380/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8111 (recon=49.7551, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1213 | lr=1.00e-06
+2026-08-13 12:57:18,541 | Epoch 1390/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8024 (recon=49.7441, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1350 | lr=1.00e-06
+2026-08-13 12:57:27,142 | Epoch 1400/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7923 (recon=49.7315, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1400 | lr=1.00e-06
+2026-08-13 12:57:37,565 | Epoch 1410/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7951 (recon=49.7350, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1315 | lr=1.00e-06
+2026-08-13 12:57:47,385 | Epoch 1420/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7979 (recon=49.7385, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1323 | lr=1.00e-06
+2026-08-13 12:57:57,734 | Epoch 1430/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8103 (recon=49.7540, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1372 | lr=1.00e-06
+2026-08-13 12:58:08,311 | Epoch 1440/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8086 (recon=49.7519, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1510 | lr=1.00e-06
+2026-08-13 12:58:18,269 | Epoch 1450/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8305 (recon=49.7792, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1454 | lr=1.00e-06
+2026-08-13 12:58:27,078 | Epoch 1460/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8429 (recon=49.7948, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1419 | lr=1.00e-06
+2026-08-13 12:58:36,719 | Epoch 1470/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8028 (recon=49.7446, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1290 | lr=1.00e-06
+2026-08-13 12:58:48,303 | Epoch 1480/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8298 (recon=49.7784, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1548 | lr=1.00e-06
+2026-08-13 12:58:59,124 | Epoch 1490/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7748 (recon=49.7096, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1511 | lr=1.00e-06
+2026-08-13 12:59:08,469 | Epoch 1500/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7981 (recon=49.7387, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1451 | lr=1.00e-06
+2026-08-13 12:59:17,867 | Epoch 1510/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8011 (recon=49.7424, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1357 | lr=1.00e-06
+2026-08-13 12:59:28,027 | Epoch 1520/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8208 (recon=49.7672, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1455 | lr=1.00e-06
+2026-08-13 12:59:39,195 | Epoch 1530/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8189 (recon=49.7648, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1535 | lr=1.00e-06
+2026-08-13 12:59:50,344 | Epoch 1540/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8048 (recon=49.7471, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1668 | lr=1.00e-06
+2026-08-13 12:59:59,509 | Epoch 1550/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7683 (recon=49.7015, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1915 | lr=1.00e-06
+2026-08-13 13:00:08,876 | Epoch 1560/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8121 (recon=49.7563, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1699 | lr=1.00e-06
+2026-08-13 13:00:18,850 | Epoch 1570/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8295 (recon=49.7780, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1680 | lr=1.00e-06
+2026-08-13 13:00:30,542 | Epoch 1580/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7933 (recon=49.7327, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1762 | lr=1.00e-06
+2026-08-13 13:00:39,876 | Epoch 1590/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8122 (recon=49.7563, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1869 | lr=1.00e-06
+2026-08-13 13:00:50,582 | Epoch 1600/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8520 (recon=49.8061, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1753 | lr=1.00e-06
+2026-08-13 13:01:01,018 | Epoch 1610/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7913 (recon=49.7303, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2016 | lr=1.00e-06
+2026-08-13 13:01:10,154 | Epoch 1620/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7854 (recon=49.7228, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1794 | lr=1.00e-06
+2026-08-13 13:01:20,664 | Epoch 1630/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7865 (recon=49.7243, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1792 | lr=1.00e-06
+2026-08-13 13:01:29,615 | Epoch 1640/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8231 (recon=49.7700, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1839 | lr=1.00e-06
+2026-08-13 13:01:38,933 | Epoch 1650/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7844 (recon=49.7216, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1854 | lr=1.00e-06
+2026-08-13 13:01:49,526 | Epoch 1660/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7512 (recon=49.6800, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1920 | lr=1.00e-06
+2026-08-13 13:01:58,268 | Epoch 1670/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8135 (recon=49.7579, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1961 | lr=1.00e-06
+2026-08-13 13:02:09,558 | Epoch 1680/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8167 (recon=49.7620, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1650 | lr=1.00e-06
+2026-08-13 13:02:21,341 | Epoch 1690/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7782 (recon=49.7139, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2001 | lr=1.00e-06
+2026-08-13 13:02:31,384 | Epoch 1700/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7839 (recon=49.7210, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2180 | lr=1.00e-06
+2026-08-13 13:02:42,731 | Epoch 1710/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.8106 (recon=49.7544, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2195 | lr=1.00e-06
+2026-08-13 13:02:52,834 | Epoch 1720/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7704 (recon=49.7041, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2056 | lr=1.00e-06
+2026-08-13 13:03:02,633 | Epoch 1730/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7877 (recon=49.7257, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2010 | lr=1.00e-06
+2026-08-13 13:03:12,933 | Epoch 1740/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7921 (recon=49.7312, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2078 | lr=1.00e-06
+2026-08-13 13:03:23,812 | Epoch 1750/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7659 (recon=49.6985, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.1976 | lr=1.00e-06
+2026-08-13 13:03:34,894 | Epoch 1760/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7828 (recon=49.7196, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2097 | lr=1.00e-06
+2026-08-13 13:03:45,080 | Epoch 1770/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7781 (recon=49.7137, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2162 | lr=1.00e-06
+2026-08-13 13:03:53,343 | Epoch 1780/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7764 (recon=49.7116, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2125 | lr=1.00e-06
+2026-08-13 13:04:03,514 | Epoch 1790/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7832 (recon=49.7201, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2197 | lr=1.00e-06
+2026-08-13 13:04:12,774 | Epoch 1800/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7033 (recon=49.6201, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2335 | lr=1.00e-06
+2026-08-13 13:04:23,324 | Epoch 1810/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7685 (recon=49.7017, kl_g0=0.0089, kl_u=0.0000, cls=0.0000) | val=40.2321 | lr=1.00e-06
+2026-08-13 13:04:34,592 | Epoch 1820/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7853 (recon=49.7227, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2321 | lr=1.00e-06
+2026-08-13 13:04:44,134 | Epoch 1830/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7550 (recon=49.6848, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2335 | lr=1.00e-06
+2026-08-13 13:04:53,219 | Epoch 1840/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7650 (recon=49.6973, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2066 | lr=1.00e-06
+2026-08-13 13:05:04,788 | Epoch 1850/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7910 (recon=49.7297, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2168 | lr=1.00e-06
+2026-08-13 13:05:14,681 | Epoch 1860/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7771 (recon=49.7124, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2290 | lr=1.00e-06
+2026-08-13 13:05:24,521 | Epoch 1870/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7782 (recon=49.7137, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2364 | lr=1.00e-06
+2026-08-13 13:05:33,019 | Epoch 1880/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7457 (recon=49.6732, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2565 | lr=1.00e-06
+2026-08-13 13:05:42,684 | Epoch 1890/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7460 (recon=49.6736, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2417 | lr=1.00e-06
+2026-08-13 13:05:53,561 | Epoch 1900/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7478 (recon=49.6758, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2274 | lr=1.00e-06
+2026-08-13 13:06:03,341 | Epoch 1910/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7412 (recon=49.6675, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2295 | lr=1.00e-06
+2026-08-13 13:06:14,865 | Epoch 1920/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7475 (recon=49.6754, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2186 | lr=1.00e-06
+2026-08-13 13:06:24,065 | Epoch 1930/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7954 (recon=49.7353, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2391 | lr=1.00e-06
+2026-08-13 13:06:34,909 | Epoch 1940/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7968 (recon=49.7370, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2557 | lr=1.00e-06
+2026-08-13 13:06:44,963 | Epoch 1950/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7641 (recon=49.6962, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2511 | lr=1.00e-06
+2026-08-13 13:06:56,336 | Epoch 1960/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7481 (recon=49.6761, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2286 | lr=1.00e-06
+2026-08-13 13:07:09,600 | Epoch 1970/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7456 (recon=49.6731, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2509 | lr=1.00e-06
+2026-08-13 13:07:22,204 | Epoch 1980/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7320 (recon=49.6561, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2249 | lr=1.00e-06
+2026-08-13 13:07:31,458 | Epoch 1990/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7341 (recon=49.6586, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2254 | lr=1.00e-06
+2026-08-13 13:07:42,417 | Epoch 2000/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7964 (recon=49.7365, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2259 | lr=1.00e-06
+2026-08-13 13:07:57,133 | Epoch 2010/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7234 (recon=49.6453, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2325 | lr=1.00e-06
+2026-08-13 13:08:08,653 | Epoch 2020/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7539 (recon=49.6833, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2247 | lr=1.00e-06
+2026-08-13 13:08:18,888 | Epoch 2030/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7106 (recon=49.6293, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2288 | lr=1.00e-06
+2026-08-13 13:08:30,430 | Epoch 2040/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7533 (recon=49.6827, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2311 | lr=1.00e-06
+2026-08-13 13:08:39,188 | Epoch 2050/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7512 (recon=49.6800, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2284 | lr=1.00e-06
+2026-08-13 13:08:46,993 | Epoch 2060/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7240 (recon=49.6460, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2443 | lr=1.00e-06
+2026-08-13 13:08:57,699 | Epoch 2070/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7301 (recon=49.6537, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2568 | lr=1.00e-06
+2026-08-13 13:09:06,897 | Epoch 2080/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7362 (recon=49.6613, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2549 | lr=1.00e-06
+2026-08-13 13:09:17,233 | Epoch 2090/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7329 (recon=49.6571, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2533 | lr=1.00e-06
+2026-08-13 13:09:28,671 | Epoch 2100/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7628 (recon=49.6945, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2415 | lr=1.00e-06
+2026-08-13 13:09:38,846 | Epoch 2110/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7626 (recon=49.6943, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2575 | lr=1.00e-06
+2026-08-13 13:09:49,505 | Epoch 2120/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7711 (recon=49.7049, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2586 | lr=1.00e-06
+2026-08-13 13:09:59,554 | Epoch 2130/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7653 (recon=49.6976, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2556 | lr=1.00e-06
+2026-08-13 13:10:09,700 | Epoch 2140/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7445 (recon=49.6716, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2384 | lr=1.00e-06
+2026-08-13 13:10:20,048 | Epoch 2150/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7192 (recon=49.6399, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2363 | lr=1.00e-06
+2026-08-13 13:10:29,311 | Epoch 2160/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7099 (recon=49.6283, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2398 | lr=1.00e-06
+2026-08-13 13:10:39,980 | Epoch 2170/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7434 (recon=49.6702, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2507 | lr=1.00e-06
+2026-08-13 13:10:50,564 | Epoch 2180/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7188 (recon=49.6395, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2401 | lr=1.00e-06
+2026-08-13 13:11:01,666 | Epoch 2190/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7081 (recon=49.6261, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2578 | lr=1.00e-06
+2026-08-13 13:11:12,649 | Epoch 2200/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7191 (recon=49.6399, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2529 | lr=1.00e-06
+2026-08-13 13:11:22,931 | Epoch 2210/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7608 (recon=49.6920, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2726 | lr=1.00e-06
+2026-08-13 13:11:33,891 | Epoch 2220/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7385 (recon=49.6641, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2834 | lr=1.00e-06
+2026-08-13 13:11:44,863 | Epoch 2230/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7108 (recon=49.6295, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2680 | lr=1.00e-06
+2026-08-13 13:11:55,909 | Epoch 2240/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7346 (recon=49.6592, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2543 | lr=1.00e-06
+2026-08-13 13:12:06,498 | Epoch 2250/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7324 (recon=49.6565, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2685 | lr=1.00e-06
+2026-08-13 13:12:14,504 | Epoch 2260/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7236 (recon=49.6455, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2804 | lr=1.00e-06
+2026-08-13 13:12:23,798 | Epoch 2270/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7209 (recon=49.6421, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2503 | lr=1.00e-06
+2026-08-13 13:12:33,911 | Epoch 2280/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7252 (recon=49.6475, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2475 | lr=1.00e-06
+2026-08-13 13:12:44,892 | Epoch 2290/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7318 (recon=49.6557, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2506 | lr=1.00e-06
+2026-08-13 13:12:55,898 | Epoch 2300/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7500 (recon=49.6784, kl_g0=0.0090, kl_u=0.0000, cls=0.0000) | val=40.2534 | lr=1.00e-06
+2026-08-13 13:13:06,410 | Epoch 2310/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7317 (recon=49.6555, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2626 | lr=1.00e-06
+2026-08-13 13:13:17,759 | Epoch 2320/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7133 (recon=49.6326, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2488 | lr=1.00e-06
+2026-08-13 13:13:28,663 | Epoch 2330/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7064 (recon=49.6240, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2404 | lr=1.00e-06
+2026-08-13 13:13:37,569 | Epoch 2340/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7584 (recon=49.6889, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2527 | lr=1.00e-06
+2026-08-13 13:13:49,699 | Epoch 2350/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7247 (recon=49.6469, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2575 | lr=1.00e-06
+2026-08-13 13:14:00,067 | Epoch 2360/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7427 (recon=49.6694, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2633 | lr=1.00e-06
+2026-08-13 13:14:08,547 | Epoch 2370/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7444 (recon=49.6715, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2605 | lr=1.00e-06
+2026-08-13 13:14:17,745 | Epoch 2380/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7057 (recon=49.6231, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2593 | lr=1.00e-06
+2026-08-13 13:14:29,281 | Epoch 2390/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7215 (recon=49.6428, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2643 | lr=1.00e-06
+2026-08-13 13:14:37,564 | Epoch 2400/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7222 (recon=49.6437, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2758 | lr=1.00e-06
+2026-08-13 13:14:46,870 | Epoch 2410/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7208 (recon=49.6420, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2755 | lr=1.00e-06
+2026-08-13 13:14:58,464 | Epoch 2420/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6950 (recon=49.6096, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2644 | lr=1.00e-06
+2026-08-13 13:15:07,598 | Epoch 2430/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7199 (recon=49.6408, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2611 | lr=1.00e-06
+2026-08-13 13:15:17,265 | Epoch 2440/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7187 (recon=49.6392, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2623 | lr=1.00e-06
+2026-08-13 13:15:28,251 | Epoch 2450/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7088 (recon=49.6269, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2534 | lr=1.00e-06
+2026-08-13 13:15:36,915 | Epoch 2460/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7016 (recon=49.6179, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2617 | lr=1.00e-06
+2026-08-13 13:15:46,126 | Epoch 2470/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7104 (recon=49.6290, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2715 | lr=1.00e-06
+2026-08-13 13:15:58,179 | Epoch 2480/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7231 (recon=49.6447, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2655 | lr=1.00e-06
+2026-08-13 13:16:09,802 | Epoch 2490/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7035 (recon=49.6203, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2662 | lr=1.00e-06
+2026-08-13 13:16:20,305 | Epoch 2500/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7136 (recon=49.6330, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2890 | lr=1.00e-06
+2026-08-13 13:16:31,410 | Epoch 2510/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7019 (recon=49.6182, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2638 | lr=1.00e-06
+2026-08-13 13:16:42,387 | Epoch 2520/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7129 (recon=49.6321, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2812 | lr=1.00e-06
+2026-08-13 13:16:51,104 | Epoch 2530/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7025 (recon=49.6190, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2668 | lr=1.00e-06
+2026-08-13 13:17:00,989 | Epoch 2540/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6787 (recon=49.5893, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2609 | lr=1.00e-06
+2026-08-13 13:17:12,284 | Epoch 2550/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6682 (recon=49.5762, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2615 | lr=1.00e-06
+2026-08-13 13:17:24,016 | Epoch 2560/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6826 (recon=49.5942, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2708 | lr=1.00e-06
+2026-08-13 13:17:34,146 | Epoch 2570/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6855 (recon=49.5977, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2737 | lr=1.00e-06
+2026-08-13 13:17:45,149 | Epoch 2580/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6972 (recon=49.6124, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2748 | lr=1.00e-06
+2026-08-13 13:17:54,815 | Epoch 2590/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7031 (recon=49.6198, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2729 | lr=1.00e-06
+2026-08-13 13:18:05,236 | Epoch 2600/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7130 (recon=49.6322, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2716 | lr=1.00e-06
+2026-08-13 13:18:15,228 | Epoch 2610/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6473 (recon=49.5500, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2755 | lr=1.00e-06
+2026-08-13 13:18:25,678 | Epoch 2620/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6749 (recon=49.5846, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2786 | lr=1.00e-06
+2026-08-13 13:18:36,069 | Epoch 2630/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6751 (recon=49.5847, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2786 | lr=1.00e-06
+2026-08-13 13:18:44,595 | Epoch 2640/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7123 (recon=49.6312, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2686 | lr=1.00e-06
+2026-08-13 13:18:53,696 | Epoch 2650/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6995 (recon=49.6152, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2528 | lr=1.00e-06
+2026-08-13 13:19:02,548 | Epoch 2660/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6681 (recon=49.5760, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2516 | lr=1.00e-06
+2026-08-13 13:19:13,473 | Epoch 2670/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6995 (recon=49.6153, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2669 | lr=1.00e-06
+2026-08-13 13:19:24,059 | Epoch 2680/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6844 (recon=49.5964, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2574 | lr=1.00e-06
+2026-08-13 13:19:35,309 | Epoch 2690/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7229 (recon=49.6445, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2672 | lr=1.00e-06
+2026-08-13 13:19:46,523 | Epoch 2700/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6913 (recon=49.6050, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2639 | lr=1.00e-06
+2026-08-13 13:19:57,886 | Epoch 2710/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6824 (recon=49.5939, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2723 | lr=1.00e-06
+2026-08-13 13:20:09,501 | Epoch 2720/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6653 (recon=49.5725, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2657 | lr=1.00e-06
+2026-08-13 13:20:19,923 | Epoch 2730/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7107 (recon=49.6292, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2772 | lr=1.00e-06
+2026-08-13 13:20:30,164 | Epoch 2740/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6728 (recon=49.5818, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2801 | lr=1.00e-06
+2026-08-13 13:20:40,788 | Epoch 2750/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6471 (recon=49.5497, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2777 | lr=1.00e-06
+2026-08-13 13:20:50,624 | Epoch 2760/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6511 (recon=49.5548, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2854 | lr=1.00e-06
+2026-08-13 13:20:59,233 | Epoch 2770/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.7011 (recon=49.6173, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2879 | lr=1.00e-06
+2026-08-13 13:21:10,236 | Epoch 2780/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6647 (recon=49.5717, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2855 | lr=1.00e-06
+2026-08-13 13:21:20,855 | Epoch 2790/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6416 (recon=49.5428, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2832 | lr=1.00e-06
+2026-08-13 13:21:31,801 | Epoch 2800/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6687 (recon=49.5767, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2749 | lr=1.00e-06
+2026-08-13 13:21:42,592 | Epoch 2810/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6622 (recon=49.5686, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2830 | lr=1.00e-06
+2026-08-13 13:21:52,585 | Epoch 2820/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6521 (recon=49.5559, kl_g0=0.0091, kl_u=0.0000, cls=0.0000) | val=40.2855 | lr=1.00e-06
+2026-08-13 13:22:04,494 | Epoch 2830/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6718 (recon=49.5805, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2617 | lr=1.00e-06
+2026-08-13 13:22:15,213 | Epoch 2840/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6397 (recon=49.5404, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2760 | lr=1.00e-06
+2026-08-13 13:22:25,419 | Epoch 2850/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6703 (recon=49.5787, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2764 | lr=1.00e-06
+2026-08-13 13:22:36,453 | Epoch 2860/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6926 (recon=49.6065, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2715 | lr=1.00e-06
+2026-08-13 13:22:46,406 | Epoch 2870/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6692 (recon=49.5773, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2803 | lr=1.00e-06
+2026-08-13 13:22:54,925 | Epoch 2880/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6579 (recon=49.5632, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2710 | lr=1.00e-06
+2026-08-13 13:23:04,084 | Epoch 2890/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6505 (recon=49.5540, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2737 | lr=1.00e-06
+2026-08-13 13:23:16,121 | Epoch 2900/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6597 (recon=49.5654, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2795 | lr=1.00e-06
+2026-08-13 13:23:26,202 | Epoch 2910/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6445 (recon=49.5465, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2861 | lr=1.00e-06
+2026-08-13 13:23:35,467 | Epoch 2920/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6360 (recon=49.5358, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2976 | lr=1.00e-06
+2026-08-13 13:23:43,589 | Epoch 2930/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6839 (recon=49.5958, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2872 | lr=1.00e-06
+2026-08-13 13:23:52,812 | Epoch 2940/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6348 (recon=49.5343, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2963 | lr=1.00e-06
+2026-08-13 13:24:02,887 | Epoch 2950/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6324 (recon=49.5313, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.3132 | lr=1.00e-06
+2026-08-13 13:24:12,207 | Epoch 2960/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6528 (recon=49.5569, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.3027 | lr=1.00e-06
+2026-08-13 13:24:20,882 | Epoch 2970/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6345 (recon=49.5339, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2886 | lr=1.00e-06
+2026-08-13 13:24:28,970 | Epoch 2980/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6250 (recon=49.5221, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2856 | lr=1.00e-06
+2026-08-13 13:24:40,839 | Epoch 2990/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6372 (recon=49.5374, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2800 | lr=1.00e-06
+2026-08-13 13:24:51,475 | Epoch 3000/3000 | kl_g0_w=1.00 kl_u_w=1.00 | train=39.6542 (recon=49.5586, kl_g0=0.0092, kl_u=0.0000, cls=0.0000) | val=40.2813 | lr=1.00e-06
+2026-08-13 13:24:51,486 | Final model saved to /home/nadegeo/LIFUS-BRICK/results/trained_models/ablation_3_batch_size_4/ablation_no_control/final_model.pt
+2026-08-13 13:24:51,486 | Best val loss: 39.8668
+2026-08-13 13:24:51,486 | Best joint-best cls loss: val=0.0000, train=0.0000
+2026-08-13 13:24:51,486 | Training complete.
