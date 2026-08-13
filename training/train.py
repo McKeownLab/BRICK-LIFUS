@@ -78,10 +78,10 @@ import config
 # ================================================================================
 # DEFAULTS
 # ================================================================================
-N_EPOCHS        = 2700
+N_EPOCHS        = 3000
 LR              = 1e-4
 DATA_DIR        = ROOT_DIR / "data" / "preprocessed_data"
-RESULTS_DIR     = ROOT_DIR / "results" / "training"
+RESULTS_DIR     = ROOT_DIR / "results" / "trained_models"
 
 CSV_COLUMNS = [
     "epoch",

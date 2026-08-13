@@ -7,10 +7,10 @@ no_control_no_ic (crossing use_control x use_ic) -- then compares them.
 
 For a given --ablation-name (a folder to group the run under):
   1. Trains all four conditions via training.train.train(), saving each to
-     results/training/<ablation_name>/ablation_<condition>/.
+     results/trained_models/<ablation_name>/ablation_<condition>/.
   2. Plots train/val curves for every metric (total, recon, KL_g0, KL_u, cls),
      one row per metric, one line per condition, saved to
-     results/figures/<ablation_name>/ablation_results.png.
+     results/figures/plot_trained_models/<ablation_name>/ablation_results.png.
   3. Builds a best-val-loss comparison table (recon/cls/total) across
      conditions, saved as .txt alongside the plot.
 
@@ -49,8 +49,8 @@ METRICS = [
 
 
 def run_ablations(ablation_name: str, n_epochs: int = 1000, batch_size: int = None):
-    training_dir = ROOT_DIR / "results" / "training" / ablation_name
-    figures_dir  = ROOT_DIR / "results" / "figures" / ablation_name
+    training_dir = ROOT_DIR / "results" / "trained_models" / ablation_name
+    figures_dir  = ROOT_DIR / "results" / "figures" / "plot_trained_models" / ablation_name
 
     for name, kwargs in ABLATIONS.items():
         print(f"\n--- Running ablation: {name} (batch_size={batch_size}) ---")
@@ -118,8 +118,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.plot_only:
-        training_dir = ROOT_DIR / "results" / "training" / args.ablation_name
-        figures_dir  = ROOT_DIR / "results" / "figures" / args.ablation_name
+        training_dir = ROOT_DIR / "results" / "trained_models" / args.ablation_name
+        figures_dir  = ROOT_DIR / "results" / "figures" / "plot_trained_models" / args.ablation_name
         plot_ablations(args.ablation_name, training_dir, figures_dir)
     else:
         run_ablations(args.ablation_name, n_epochs=args.epochs, batch_size=args.batch_size)
