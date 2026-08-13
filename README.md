@@ -12,11 +12,6 @@ BRICK is a Koopman variational autoencoder for modeling resting-state fMRI dynam
     results/                — training runs, figures
 
 
-## Usage
-
-Training:
-    Defined at the top of most of the respective files.
-
 ## Model overview
 
 **`config.py`** — All hyperparameters and shared constants (model dimensions, training defaults, paths) live here, so that runs stay consistent across training, sweeps, and analysis without duplicating values.
